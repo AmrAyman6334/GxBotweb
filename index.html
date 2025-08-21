@@ -6,13 +6,14 @@
   <title>GxBot | بوت ديسكورد</title>
   <style>
     :root {
-      --primary: #f1c40f; /* أصفر ذهبي */
-      --secondary: #5865F2; /* بنفسجي Discord */
+      --primary: #f1c40f;
+      --secondary: #5865F2;
       --dark: #1a1a2e;
       --light: #f9f9f9;
       --text-dark: #222;
       --text-light: #f0f0f0;
     }
+
     body {
       margin: 0;
       font-family: 'Poppins', 'Segoe UI', sans-serif;
@@ -33,29 +34,34 @@
       100% {background-position: 0% 50%;}
     }
 
-    /* ⚡ خلفية رموز */
-    body::before {
-      content: "⚡ ⚡ ⚡ ⚡ ⚡ ⚡";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      font-size: 6rem;
-      color: rgba(255, 255, 255, 0.04);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
+    /* ⚡ رموز متحركة */
+    .symbols {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
       z-index: 0;
       pointer-events: none;
+    }
+    .symbol {
+      position: absolute;
+      font-size: 2rem;
+      color: rgba(255,255,255,0.07);
+      animation: float 10s linear infinite;
+    }
+    @keyframes float {
+      from {transform: translateY(100vh);}
+      to {transform: translateY(-10vh);}
     }
 
     header {
       padding: 2rem 1rem;
       text-align: center;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
-    /* Dropdown للّغة والمظهر */
+    /* منيو اللغة والمظهر */
     .top-controls {
       position: absolute;
       top: 1rem;
@@ -82,12 +88,18 @@
       height: 130px;
       border-radius: 50%;
       border: 4px solid var(--primary);
-      box-shadow: 0 0 20px rgba(241,196,15,0.7);
+      box-shadow: 0 0 25px rgba(241,196,15,0.8);
       margin-bottom: 1rem;
+      animation: popIn 1.2s ease;
+    }
+    @keyframes popIn {
+      from {opacity: 0; transform: scale(0.6);}
+      to {opacity: 1; transform: scale(1);}
     }
     header h1 {font-size: 3rem; margin: 0; color: var(--primary); font-weight: 800;}
-    header p {font-size: 1.3rem; max-width: 700px; margin: 1rem auto 1.5rem; color: inherit; line-height: 1.8;}
+    header p {font-size: 1.2rem; max-width: 700px; margin: 1rem auto 1.5rem; color: inherit; line-height: 1.8;}
 
+    /* أزرار */
     .buttons {display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin:2rem 0;}
     .btn {
       padding:1rem 2rem;
@@ -100,13 +112,15 @@
       color:white;
       background:linear-gradient(135deg,var(--secondary),#4040c4);
       box-shadow:0 4px 15px rgba(0,0,0,0.4);
-      transition:all .3s;
+      transition:all .35s cubic-bezier(.19,1,.22,1);
       position:relative;
       z-index:1;
-      animation: fadeIn 1.2s ease;
     }
-    .btn:hover {transform:translateY(-4px) scale(1.08); box-shadow:0 6px 18px rgba(0,0,0,0.5);}
-    @keyframes fadeIn {from{opacity:0;transform:scale(.9);} to{opacity:1;transform:scale(1);}}
+    .btn:hover {
+      transform:translateY(-6px) scale(1.12) rotate(-1deg);
+      box-shadow:0 10px 25px rgba(0,0,0,0.6);
+      filter:brightness(1.1);
+    }
     .invite{background:linear-gradient(135deg,#f1c40f,#d4ac0d);}
     .support{background:linear-gradient(135deg,#27ae60,#1e8449);}
     .dashboard{background:linear-gradient(135deg,#e67e22,#ba4a00);}
@@ -132,11 +146,11 @@
       box-shadow:0 6px 14px rgba(0,0,0,0.3);
       word-wrap: break-word;
     }
-    .card:hover {transform:translateY(-8px) scale(1.02); background:rgba(255,255,255,0.1);}
-    .card i {font-size:2.5rem; margin-bottom:1rem; color:var(--primary);}
+    .card:hover {transform:translateY(-8px) scale(1.04); background:rgba(255,255,255,0.1);}
     .card h3 {margin:0.5rem 0; font-size:1.3rem; color:var(--secondary);}
     .card p {font-size:0.95rem; color:inherit; line-height:1.6;}
 
+    /* برايم */
     .premium-section {background:rgba(243,156,18,0.08); border-top:2px dashed var(--primary); padding:3rem 1rem; margin-top:2rem; text-align:center; z-index:1; position:relative;}
     .premium-section h2 {color:var(--primary); font-size:2rem; margin-bottom:2rem;}
     .premium-card {background:rgba(243,156,18,0.15); border:1px solid var(--primary); border-radius:14px; padding:1.5rem; margin:1rem auto; max-width:500px; color:inherit; font-size:1rem; box-shadow:0 0 15px rgba(243,156,18,0.4);}
@@ -147,16 +161,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+  <!-- رموز متحركة -->
+  <div class="symbols" id="symbols"></div>
+
   <header>
-    <!-- منيو اللغة والمظهر -->
     <div class="top-controls">
       <select id="langSelect" onchange="changeLang(this.value)">
         <option value="ar">العربية</option>
         <option value="en">English</option>
       </select>
       <select id="themeSelect" onchange="changeTheme(this.value)">
-        <option value="dark">🌙 داكن</option>
-        <option value="light">☀️ فاتح</option>
+        <option value="dark">🌙</option>
+        <option value="light">☀️</option>
       </select>
     </div>
 
@@ -173,10 +189,8 @@
   </div>
   <div class="divider"></div>
 
-  <!-- ✅ Showcase Section -->
   <section class="showcase" id="features"></section>
 
-  <!-- ⭐ Premium Features -->
   <section class="premium-section">
     <h2 id="prime-title"></h2>
     <div class="premium-card" id="prime1"></div>
@@ -199,48 +213,38 @@
         dashboard: "📊 لوحة التحكم",
         footer: "© 2025 GxBot — جميع الحقوق محفوظة.",
         features: [
-          ["🛡️ إدارة وتحكم شامل", "أدوات إدارية متكاملة للتحكم الكامل بالسيرفر من الرتب والقنوات."],
-          ["📋 تسجيل ومتابعة الأحداث", "نظام لوج ذكي يسجل كل الأحداث والأنشطة داخل السيرفر."],
-          ["👋 ترحيب تلقائي ذكي", "رسائل ترحيب مخصصة مع صور وميزات إضافية للأعضاء الجدد."],
-          ["💸 نظام اقتصاد وعملة كنتوس", "اقتصاد متكامل، محفظة وبنك لعملة كنتوس."],
-          ["🎡 عجلة حظ GX", "لعبة تفاعلية تزيد المتعة والتفاعل بين الأعضاء."],
-          ["🏪 متجر متطور", "متجر ديناميكي مع تقييمات وثريدات للمحتوى."],
-          ["🎨 تخصيص ملفك", "خلفيات وخصائص شخصية لإبراز هويتك."],
-          ["📊 إحصائيات وتقارير", "لوحات عرض وإحصائيات دقيقة للسيرفر."],
-          ["🧾 مساعدة وإعداد سريع", "إعداد مبسط مع شروحات جاهزة."]
+          ["🛡️ إدارة وتحكم شامل", "أدوات إدارية متكاملة للتحكم الكامل بالسيرفر."],
+          ["📋 تسجيل الأحداث", "نظام لوج ذكي يسجل كل الأنشطة."],
+          ["👋 ترحيب ذكي", "رسائل ترحيب مخصصة مع صور."],
+          ["💸 اقتصاد كنتوس", "نظام متكامل مع محفظة وبنك."],
+          ["🎡 عجلة GX", "لعبة تفاعلية ممتعة للأعضاء."],
+          ["🏪 متجر متطور", "متجر مع تقييمات وثريدات."],
+          ["🎨 تخصيص ملفك", "خلفيات وخصائص شخصية."],
+          ["📊 تقارير", "إحصائيات دقيقة عن السيرفر."],
+          ["🧾 مساعدة", "إعداد سريع مع شروحات."]
         ],
         primeTitle: "🌟 مميزات GxBot Prime",
-        prime: [
-          "🔒 أمان ومراقبة متقدمة",
-          "🚀 تخصيص أوسع للترحيب",
-          "💎 خصائص اقتصادية حصرية",
-          "📈 تقارير وإحصاءات متقدمة"
-        ]
+        prime: ["🔒 أمان متقدم","🚀 تخصيص أوسع","💎 خصائص حصرية","📈 تقارير متقدمة"]
       },
       en: {
-        desc: "⚡ GxBot The ultimate Discord bot — providing management, security, economy, games & customization! ⚡",
+        desc: "⚡ GxBot The ultimate Discord bot — management, security, economy, games & customization! ⚡",
         invite: "➕ Invite Bot",
         support: "💬 Support Server",
         dashboard: "📊 Dashboard",
         footer: "© 2025 GxBot — All rights reserved.",
         features: [
-          ["🛡️ Full Management", "Advanced tools for full control of roles and channels."],
-          ["📋 Event Logging", "Smart log system for all server activities."],
-          ["👋 Smart Welcome", "Custom welcome messages with images and extras."],
-          ["💸 Economy & Kentos", "Complete economy with wallet & bank."],
-          ["🎡 GX Wheel", "Unique interactive game for engagement."],
-          ["🏪 Advanced Shop", "Dynamic shop with ratings & threads."],
-          ["🎨 Profile Customization", "Backgrounds & styles to highlight identity."],
-          ["📊 Analytics", "Detailed dashboards & stats."],
-          ["🧾 Help & Quick Setup", "Easy setup system with tutorials."]
+          ["🛡️ Full Management", "Advanced tools for roles & channels."],
+          ["📋 Event Logs", "Smart log system for activities."],
+          ["👋 Smart Welcome", "Custom welcomes with images."],
+          ["💸 Kentos Economy", "Wallet & bank with Kentos."],
+          ["🎡 GX Wheel", "Fun interactive game."],
+          ["🏪 Shop System", "Dynamic shop with ratings."],
+          ["🎨 Profile Customization", "Backgrounds & styles."],
+          ["📊 Analytics", "Detailed server stats."],
+          ["🧾 Help", "Quick setup & guides."]
         ],
         primeTitle: "🌟 GxBot Prime Features",
-        prime: [
-          "🔒 Advanced Security & Monitoring",
-          "🚀 Extended Welcome Customization",
-          "💎 Exclusive Economy Features",
-          "📈 Detailed Reports & Analytics"
-        ]
+        prime: ["🔒 Advanced Security","🚀 Extended Customization","💎 Exclusive Economy","📈 Detailed Reports"]
       }
     };
 
@@ -262,6 +266,11 @@
       t.features.forEach(f => {
         featuresContainer.innerHTML += `<div class="card"><h3>${f[0]}</h3><p>${f[1]}</p></div>`;
       });
+
+      document.querySelector("#langSelect").options[0].text = (lang === "ar") ? "العربية" : "Arabic";
+      document.querySelector("#langSelect").options[1].text = (lang === "ar") ? "الإنجليزية" : "English";
+      document.querySelector("#themeSelect").options[0].text = (lang === "ar") ? "🌙 داكن" : "🌙 Dark";
+      document.querySelector("#themeSelect").options[1].text = (lang === "ar") ? "☀️ فاتح" : "☀️ Light";
     }
 
     function changeLang(value) {
@@ -275,6 +284,21 @@
       document.body.classList.toggle("light", theme === "light");
     }
 
+    // ⚡ إنشاء رموز متحركة
+    function createSymbols() {
+      const container = document.getElementById("symbols");
+      for (let i = 0; i < 25; i++) {
+        const span = document.createElement("span");
+        span.className = "symbol";
+        span.innerText = "⚡";
+        span.style.left = Math.random()*100 + "vw";
+        span.style.animationDuration = (8 + Math.random()*10) + "s";
+        span.style.fontSize = (1 + Math.random()*2) + "rem";
+        container.appendChild(span);
+      }
+    }
+
+    createSymbols();
     renderTexts();
   </script>
 </body>
