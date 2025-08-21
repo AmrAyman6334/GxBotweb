@@ -39,7 +39,7 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       font-size: 6rem;
-      color: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.04);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -54,78 +54,110 @@
       position: relative;
       z-index: 1;
     }
-    /* أزرار التحكم فوق يسار */
+
+    /* Dropdown للّغة والمظهر */
     .top-controls {
       position: absolute;
       top: 1rem;
       left: 1rem;
       display: flex;
       gap: 0.6rem;
+      z-index: 10;
     }
-    .ctrl-btn {
-      background: rgba(255,255,255,0.15);
+    select {
+      padding: 0.4rem 0.7rem;
+      border-radius: 8px;
       border: none;
+      background: rgba(255,255,255,0.15);
       color: white;
-      padding: 0.5rem 0.9rem;
-      border-radius: 50px;
-      cursor: pointer;
       font-size: 0.85rem;
+      cursor: pointer;
       transition: 0.3s;
     }
-    .ctrl-btn:hover {background: rgba(255,255,255,0.3); transform: scale(1.05);}
+    select:hover {background: rgba(255,255,255,0.3);}
+    body.light select {color: var(--text-dark); background: rgba(0,0,0,0.1);}
 
     header img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       border: 4px solid var(--primary);
       box-shadow: 0 0 20px rgba(241,196,15,0.7);
       margin-bottom: 1rem;
     }
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-      color: var(--primary);
-      font-weight: 800;
-    }
-    header p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 1rem auto 1.5rem;
-      color: #ddd;
-      line-height: 1.8;
-    }
+    header h1 {font-size: 3rem; margin: 0; color: var(--primary); font-weight: 800;}
+    header p {font-size: 1.3rem; max-width: 700px; margin: 1rem auto 1.5rem; color: inherit; line-height: 1.8;}
 
     .buttons {display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin:2rem 0;}
-    .btn {padding:1rem 2rem;border-radius:50px;font-size:1rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;color:white;background:linear-gradient(135deg,var(--secondary),#4040c4);box-shadow:0 4px 15px rgba(0,0,0,0.4);transition:all .3s;z-index:1;position:relative;}
-    .btn:hover {transform:translateY(-4px) scale(1.05);box-shadow:0 6px 18px rgba(0,0,0,0.5);}
+    .btn {
+      padding:1rem 2rem;
+      border-radius:50px;
+      font-size:1rem;
+      font-weight:600;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      color:white;
+      background:linear-gradient(135deg,var(--secondary),#4040c4);
+      box-shadow:0 4px 15px rgba(0,0,0,0.4);
+      transition:all .3s;
+      position:relative;
+      z-index:1;
+      animation: fadeIn 1.2s ease;
+    }
+    .btn:hover {transform:translateY(-4px) scale(1.08); box-shadow:0 6px 18px rgba(0,0,0,0.5);}
+    @keyframes fadeIn {from{opacity:0;transform:scale(.9);} to{opacity:1;transform:scale(1);}}
     .invite{background:linear-gradient(135deg,#f1c40f,#d4ac0d);}
     .support{background:linear-gradient(135deg,#27ae60,#1e8449);}
     .dashboard{background:linear-gradient(135deg,#e67e22,#ba4a00);}
     .divider{width:80%;margin:3rem auto;border-top:2px solid rgba(255,255,255,0.1);}
 
     /* الكروت */
-    .showcase {display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;padding:2rem;max-width:1200px;margin:auto;position:relative;z-index:1;}
-    .card {background:rgba(255,255,255,0.05);border-radius:14px;padding:1.8rem 1.3rem;text-align:center;transition:.3s;box-shadow:0 6px 14px rgba(0,0,0,0.3);}
-    .card:hover{transform:translateY(-8px) scale(1.02);background:rgba(255,255,255,0.1);}
-    .card i{font-size:2.5rem;margin-bottom:1rem;color:var(--primary);}
-    .card h3{margin:0.5rem 0;font-size:1.3rem;color:var(--secondary);}
-    .card p{font-size:0.95rem;color:#bbb;line-height:1.6;}
+    .showcase {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:1.5rem;
+      padding:2rem;
+      max-width:1200px;
+      margin:auto;
+      position:relative;
+      z-index:1;
+    }
+    .card {
+      background:rgba(255,255,255,0.05);
+      border-radius:14px;
+      padding:1.8rem 1.3rem;
+      text-align:center;
+      transition:.3s;
+      box-shadow:0 6px 14px rgba(0,0,0,0.3);
+      word-wrap: break-word;
+    }
+    .card:hover {transform:translateY(-8px) scale(1.02); background:rgba(255,255,255,0.1);}
+    .card i {font-size:2.5rem; margin-bottom:1rem; color:var(--primary);}
+    .card h3 {margin:0.5rem 0; font-size:1.3rem; color:var(--secondary);}
+    .card p {font-size:0.95rem; color:inherit; line-height:1.6;}
 
-    .premium-section{background:rgba(243,156,18,0.08);border-top:2px dashed var(--primary);padding:3rem 1rem;margin-top:2rem;text-align:center;z-index:1;position:relative;}
-    .premium-section h2{color:var(--primary);font-size:2rem;margin-bottom:2rem;}
-    .premium-card{background:rgba(243,156,18,0.15);border:1px solid var(--primary);border-radius:14px;padding:1.5rem;margin:1rem auto;max-width:500px;color:#fff;font-size:1rem;box-shadow:0 0 15px rgba(243,156,18,0.4);}
+    .premium-section {background:rgba(243,156,18,0.08); border-top:2px dashed var(--primary); padding:3rem 1rem; margin-top:2rem; text-align:center; z-index:1; position:relative;}
+    .premium-section h2 {color:var(--primary); font-size:2rem; margin-bottom:2rem;}
+    .premium-card {background:rgba(243,156,18,0.15); border:1px solid var(--primary); border-radius:14px; padding:1.5rem; margin:1rem auto; max-width:500px; color:inherit; font-size:1rem; box-shadow:0 0 15px rgba(243,156,18,0.4);}
 
-    footer{text-align:center;padding:1rem;margin-top:3rem;font-size:0.9rem;color:#aaa;border-top:1px solid rgba(255,255,255,0.1);}
+    footer {text-align:center; padding:1rem; margin-top:3rem; font-size:0.9rem; color:#aaa; border-top:1px solid rgba(255,255,255,0.1);}
+    body.light footer {color:#444;}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <header>
-    <!-- أزرار تحكم -->
+    <!-- منيو اللغة والمظهر -->
     <div class="top-controls">
-      <button class="ctrl-btn" onclick="toggleLang()">🌐 اللغة</button>
-      <button class="ctrl-btn" onclick="toggleTheme()">🌓 المظهر</button>
+      <select id="langSelect" onchange="changeLang(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+      <select id="themeSelect" onchange="changeTheme(this.value)">
+        <option value="dark">🌙 داكن</option>
+        <option value="light">☀️ فاتح</option>
+      </select>
     </div>
 
     <img src="https://cdn.discordapp.com/attachments/1406963938565820416/1407693295869628481/IMG__.png" alt="GxBot">
@@ -161,53 +193,53 @@
 
     const translations = {
       ar: {
-        desc: "GxBot ⚡ بوت ديسكورد الإداري المتكامل — يمنحك كل ما تحتاجه لإدارة سيرفرك من الأمان، التحكم، الاقتصاد، الألعاب، والتخصيص! ⚡ انضم لآلاف المستخدمين الذين يثقون بـ GxBot لجعل مجتمعهم أكثر أماناً وتفاعلاً.",
+        desc: "⚡ GxBot بوت ديسكورد الإداري المتكامل — يمنحك أقوى أدوات الإدارة، الأمان، الاقتصاد، الألعاب، والتخصيص! ⚡",
         invite: "➕ دعوة البوت",
         support: "💬 سيرفر الدعم",
         dashboard: "📊 لوحة التحكم",
         footer: "© 2025 GxBot — جميع الحقوق محفوظة.",
         features: [
-          ["🛡️ إدارة وتحكم شامل", "أدوات إدارية متكاملة للتحكم الكامل بالسيرفر من الرتب للقنوات."],
+          ["🛡️ إدارة وتحكم شامل", "أدوات إدارية متكاملة للتحكم الكامل بالسيرفر من الرتب والقنوات."],
           ["📋 تسجيل ومتابعة الأحداث", "نظام لوج ذكي يسجل كل الأحداث والأنشطة داخل السيرفر."],
           ["👋 ترحيب تلقائي ذكي", "رسائل ترحيب مخصصة مع صور وميزات إضافية للأعضاء الجدد."],
-          ["💸 نظام اقتصاد وعملة كنتوس", "اقتصاد متكامل، محفظة وبنك لعملة كنتوس المميزة."],
-          ["🎡 عجلة حظ GX الأسطورية", "لعبة تفاعلية فريدة تزيد المتعة والتفاعل بين الأعضاء."],
-          ["🏪 نظام متجر متطور", "متجر ديناميكي بخواص التقييمات والثريدات للمحتوى."],
-          ["🎨 تخصيص ملفك", "خلفيات وخصائص شخصية لإبراز هويتك داخل السيرفر."],
-          ["📊 معلومات تقنية وإحصائيات", "لوحات عرض وإحصائيات دقيقة حول نشاط السيرفر."],
-          ["🧾 مساعدة وإعداد سريع", "نظام إعداد مبسط مع شروحات جاهزة لكل ميزة."]
+          ["💸 نظام اقتصاد وعملة كنتوس", "اقتصاد متكامل، محفظة وبنك لعملة كنتوس."],
+          ["🎡 عجلة حظ GX", "لعبة تفاعلية تزيد المتعة والتفاعل بين الأعضاء."],
+          ["🏪 متجر متطور", "متجر ديناميكي مع تقييمات وثريدات للمحتوى."],
+          ["🎨 تخصيص ملفك", "خلفيات وخصائص شخصية لإبراز هويتك."],
+          ["📊 إحصائيات وتقارير", "لوحات عرض وإحصائيات دقيقة للسيرفر."],
+          ["🧾 مساعدة وإعداد سريع", "إعداد مبسط مع شروحات جاهزة."]
         ],
         primeTitle: "🌟 مميزات GxBot Prime",
         prime: [
-          "🔒 أدوات أمان متقدمة ومراقبة السيرفر",
-          "🚀 تخصيص أوسع للترحيب والتفاعل",
-          "💎 خصائص حصرية في النظام الاقتصادي",
-          "📈 تقارير تفصيلية وإحصاءات متقدمة"
+          "🔒 أمان ومراقبة متقدمة",
+          "🚀 تخصيص أوسع للترحيب",
+          "💎 خصائص اقتصادية حصرية",
+          "📈 تقارير وإحصاءات متقدمة"
         ]
       },
       en: {
-        desc: "GxBot ⚡ The ultimate Discord bot — providing management, security, economy, games and full customization! ⚡ Trusted by thousands of communities to keep servers safe, engaging and fun.",
+        desc: "⚡ GxBot The ultimate Discord bot — providing management, security, economy, games & customization! ⚡",
         invite: "➕ Invite Bot",
         support: "💬 Support Server",
         dashboard: "📊 Dashboard",
         footer: "© 2025 GxBot — All rights reserved.",
         features: [
-          ["🛡️ Full Management & Control", "Advanced tools to manage roles, channels and permissions."],
-          ["📋 Event Logging", "Smart log system that records all events and activities."],
-          ["👋 Smart Auto-Welcome", "Custom welcome messages with images and extra features."],
-          ["💸 Economy & Kentos Currency", "Complete economy system with wallet and bank using Kentos."],
-          ["🎡 Legendary GX Wheel", "Unique interactive game to boost fun and engagement."],
-          ["🏪 Advanced Shop System", "Dynamic shop with ratings and threads support."],
-          ["🎨 Profile Customization", "Backgrounds and styles to highlight your identity."],
-          ["📊 Tech Info & Stats", "Detailed dashboards and analytics for your server."],
-          ["🧾 Help & Quick Setup", "Simple setup system with ready tutorials."]
+          ["🛡️ Full Management", "Advanced tools for full control of roles and channels."],
+          ["📋 Event Logging", "Smart log system for all server activities."],
+          ["👋 Smart Welcome", "Custom welcome messages with images and extras."],
+          ["💸 Economy & Kentos", "Complete economy with wallet & bank."],
+          ["🎡 GX Wheel", "Unique interactive game for engagement."],
+          ["🏪 Advanced Shop", "Dynamic shop with ratings & threads."],
+          ["🎨 Profile Customization", "Backgrounds & styles to highlight identity."],
+          ["📊 Analytics", "Detailed dashboards & stats."],
+          ["🧾 Help & Quick Setup", "Easy setup system with tutorials."]
         ],
         primeTitle: "🌟 GxBot Prime Features",
         prime: [
-          "🔒 Advanced security tools and server monitoring",
-          "🚀 Extended customization for welcome & interaction",
-          "💎 Exclusive features in the economy system",
-          "📈 Detailed reports and advanced analytics"
+          "🔒 Advanced Security & Monitoring",
+          "🚀 Extended Welcome Customization",
+          "💎 Exclusive Economy Features",
+          "📈 Detailed Reports & Analytics"
         ]
       }
     };
@@ -228,19 +260,19 @@
       const featuresContainer = document.querySelector("#features");
       featuresContainer.innerHTML = "";
       t.features.forEach(f => {
-        featuresContainer.innerHTML += `<div class="card"><i class="fa-solid fa-star"></i><h3>${f[0]}</h3><p>${f[1]}</p></div>`;
+        featuresContainer.innerHTML += `<div class="card"><h3>${f[0]}</h3><p>${f[1]}</p></div>`;
       });
     }
 
-    function toggleLang() {
-      lang = lang === "ar" ? "en" : "ar";
+    function changeLang(value) {
+      lang = value;
       document.querySelector("html").setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
       renderTexts();
     }
 
-    function toggleTheme() {
-      theme = theme === "dark" ? "light" : "dark";
-      document.body.classList.toggle("light");
+    function changeTheme(value) {
+      theme = value;
+      document.body.classList.toggle("light", theme === "light");
     }
 
     renderTexts();
