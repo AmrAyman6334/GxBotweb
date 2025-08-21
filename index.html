@@ -34,7 +34,7 @@
       100% {background-position: 0% 50%;}
     }
 
-    /* ⚡ رموز متحركة */
+    /* رموز متحركة */
     .symbols {
       position: fixed;
       top: 0; left: 0;
@@ -70,6 +70,21 @@
       gap: 0.6rem;
       z-index: 10;
     }
+    .login-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--secondary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    .login-btn:hover {filter: brightness(1.2);}
+
     select {
       padding: 0.4rem 0.7rem;
       border-radius: 8px;
@@ -90,11 +105,6 @@
       border: 4px solid var(--primary);
       box-shadow: 0 0 25px rgba(241,196,15,0.8);
       margin-bottom: 1rem;
-      animation: popIn 1.2s ease;
-    }
-    @keyframes popIn {
-      from {opacity: 0; transform: scale(0.6);}
-      to {opacity: 1; transform: scale(1);}
     }
     header h1 {font-size: 3rem; margin: 0; color: var(--primary); font-weight: 800;}
     header p {font-size: 1.2rem; max-width: 700px; margin: 1rem auto 1.5rem; color: inherit; line-height: 1.8;}
@@ -119,7 +129,8 @@
     .btn:hover {
       transform:translateY(-6px) scale(1.12) rotate(-1deg);
       box-shadow:0 10px 25px rgba(0,0,0,0.6);
-      filter:brightness(1.1);
+      filter:brightness(1.15);
+      text-shadow:0 0 8px rgba(255,255,255,0.6);
     }
     .invite{background:linear-gradient(135deg,#f1c40f,#d4ac0d);}
     .support{background:linear-gradient(135deg,#27ae60,#1e8449);}
@@ -138,15 +149,14 @@
       z-index:1;
     }
     .card {
-      background:rgba(255,255,255,0.05);
+      background:rgba(255,255,255,0.08); /* أوضح */
       border-radius:14px;
       padding:1.8rem 1.3rem;
       text-align:center;
       transition:.3s;
       box-shadow:0 6px 14px rgba(0,0,0,0.3);
-      word-wrap: break-word;
     }
-    .card:hover {transform:translateY(-8px) scale(1.04); background:rgba(255,255,255,0.1);}
+    .card:hover {transform:translateY(-8px) scale(1.04); background:rgba(255,255,255,0.15);}
     .card h3 {margin:0.5rem 0; font-size:1.3rem; color:var(--secondary);}
     .card p {font-size:0.95rem; color:inherit; line-height:1.6;}
 
@@ -158,13 +168,13 @@
     footer {text-align:center; padding:1rem; margin-top:3rem; font-size:0.9rem; color:#aaa; border-top:1px solid rgba(255,255,255,0.1);}
     body.light footer {color:#444;}
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <!-- رموز متحركة -->
   <div class="symbols" id="symbols"></div>
 
   <header>
+    <a href="#" class="login-btn">🔑 تسجيل دخول</a>
     <div class="top-controls">
       <select id="langSelect" onchange="changeLang(this.value)">
         <option value="ar">العربية</option>
@@ -180,126 +190,3 @@
     <h1>GxBot</h1>
     <p id="desc"></p>
   </header>
-
-  <div class="divider"></div>
-  <div class="buttons">
-    <a class="btn invite" id="invite" target="_blank"></a>
-    <a class="btn support" id="support" target="_blank"></a>
-    <a class="btn dashboard" id="dashboard" target="_blank"></a>
-  </div>
-  <div class="divider"></div>
-
-  <section class="showcase" id="features"></section>
-
-  <section class="premium-section">
-    <h2 id="prime-title"></h2>
-    <div class="premium-card" id="prime1"></div>
-    <div class="premium-card" id="prime2"></div>
-    <div class="premium-card" id="prime3"></div>
-    <div class="premium-card" id="prime4"></div>
-  </section>
-
-  <footer id="footer"></footer>
-
-  <script>
-    let lang = "ar";
-    let theme = "dark";
-
-    const translations = {
-      ar: {
-        desc: "⚡ GxBot بوت ديسكورد الإداري المتكامل — يمنحك أقوى أدوات الإدارة، الأمان، الاقتصاد، الألعاب، والتخصيص! ⚡",
-        invite: "➕ دعوة البوت",
-        support: "💬 سيرفر الدعم",
-        dashboard: "📊 لوحة التحكم",
-        footer: "© 2025 GxBot — جميع الحقوق محفوظة.",
-        features: [
-          ["🛡️ إدارة وتحكم شامل", "أدوات إدارية متكاملة للتحكم الكامل بالسيرفر."],
-          ["📋 تسجيل الأحداث", "نظام لوج ذكي يسجل كل الأنشطة."],
-          ["👋 ترحيب ذكي", "رسائل ترحيب مخصصة مع صور."],
-          ["💸 اقتصاد كنتوس", "نظام متكامل مع محفظة وبنك."],
-          ["🎡 عجلة GX", "لعبة تفاعلية ممتعة للأعضاء."],
-          ["🏪 متجر متطور", "متجر مع تقييمات وثريدات."],
-          ["🎨 تخصيص ملفك", "خلفيات وخصائص شخصية."],
-          ["📊 تقارير", "إحصائيات دقيقة عن السيرفر."],
-          ["🧾 مساعدة", "إعداد سريع مع شروحات."]
-        ],
-        primeTitle: "🌟 مميزات GxBot Prime",
-        prime: ["🔒 أمان متقدم","🚀 تخصيص أوسع","💎 خصائص حصرية","📈 تقارير متقدمة"]
-      },
-      en: {
-        desc: "⚡ GxBot The ultimate Discord bot — management, security, economy, games & customization! ⚡",
-        invite: "➕ Invite Bot",
-        support: "💬 Support Server",
-        dashboard: "📊 Dashboard",
-        footer: "© 2025 GxBot — All rights reserved.",
-        features: [
-          ["🛡️ Full Management", "Advanced tools for roles & channels."],
-          ["📋 Event Logs", "Smart log system for activities."],
-          ["👋 Smart Welcome", "Custom welcomes with images."],
-          ["💸 Kentos Economy", "Wallet & bank with Kentos."],
-          ["🎡 GX Wheel", "Fun interactive game."],
-          ["🏪 Shop System", "Dynamic shop with ratings."],
-          ["🎨 Profile Customization", "Backgrounds & styles."],
-          ["📊 Analytics", "Detailed server stats."],
-          ["🧾 Help", "Quick setup & guides."]
-        ],
-        primeTitle: "🌟 GxBot Prime Features",
-        prime: ["🔒 Advanced Security","🚀 Extended Customization","💎 Exclusive Economy","📈 Detailed Reports"]
-      }
-    };
-
-    function renderTexts() {
-      const t = translations[lang];
-      document.querySelector("#desc").innerText = t.desc;
-      document.querySelector("#invite").innerText = t.invite;
-      document.querySelector("#support").innerText = t.support;
-      document.querySelector("#dashboard").innerText = t.dashboard;
-      document.querySelector("#footer").innerText = t.footer;
-      document.querySelector("#prime-title").innerText = t.primeTitle;
-      document.querySelector("#prime1").innerText = t.prime[0];
-      document.querySelector("#prime2").innerText = t.prime[1];
-      document.querySelector("#prime3").innerText = t.prime[2];
-      document.querySelector("#prime4").innerText = t.prime[3];
-
-      const featuresContainer = document.querySelector("#features");
-      featuresContainer.innerHTML = "";
-      t.features.forEach(f => {
-        featuresContainer.innerHTML += `<div class="card"><h3>${f[0]}</h3><p>${f[1]}</p></div>`;
-      });
-
-      document.querySelector("#langSelect").options[0].text = (lang === "ar") ? "العربية" : "Arabic";
-      document.querySelector("#langSelect").options[1].text = (lang === "ar") ? "الإنجليزية" : "English";
-      document.querySelector("#themeSelect").options[0].text = (lang === "ar") ? "🌙 داكن" : "🌙 Dark";
-      document.querySelector("#themeSelect").options[1].text = (lang === "ar") ? "☀️ فاتح" : "☀️ Light";
-    }
-
-    function changeLang(value) {
-      lang = value;
-      document.querySelector("html").setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
-      renderTexts();
-    }
-
-    function changeTheme(value) {
-      theme = value;
-      document.body.classList.toggle("light", theme === "light");
-    }
-
-    // ⚡ إنشاء رموز متحركة
-    function createSymbols() {
-      const container = document.getElementById("symbols");
-      for (let i = 0; i < 25; i++) {
-        const span = document.createElement("span");
-        span.className = "symbol";
-        span.innerText = "⚡";
-        span.style.left = Math.random()*100 + "vw";
-        span.style.animationDuration = (8 + Math.random()*10) + "s";
-        span.style.fontSize = (1 + Math.random()*2) + "rem";
-        container.appendChild(span);
-      }
-    }
-
-    createSymbols();
-    renderTexts();
-  </script>
-</body>
-</html>
