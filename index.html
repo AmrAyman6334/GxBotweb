@@ -9,228 +9,179 @@
       --primary: #5865F2;
       --secondary: #2ecc71;
       --warning: #e67e22;
+      --premium: #f39c12;
       --dark: #1e1e2f;
       --light: #f9f9f9;
       --text-dark: #222;
       --text-light: #f0f0f0;
     }
-
     body {
       margin: 0;
       font-family: 'Poppins', 'Segoe UI', sans-serif;
       background: linear-gradient(-45deg, #1e1e2f, #252547, #181818, #202040);
       background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
+      animation: gradientBG 15s ease infinite;
       color: var(--text-light);
-      transition: background 0.4s, color 0.4s;
       overflow-x: hidden;
     }
-    body.light {
-      background: linear-gradient(-45deg, #ffffff, #f0f0f0, #eaeaea, #dcdcdc);
-      color: var(--text-dark);
-    }
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
+    body.light {background: linear-gradient(-45deg,#fff,#f0f0f0,#eaeaea,#dcdcdc);color:var(--text-dark);}
+    @keyframes gradientBG {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
-    header {
-      padding: 3rem 1rem;
-      text-align: center;
-      animation: fadeInDown 1.2s ease;
-    }
-    header h1 {
-      font-size: 3.5rem;
-      margin: 0;
-      color: var(--primary);
-      font-weight: 800;
-    }
-    header p {
-      font-size: 1.3rem;
-      margin: 1rem 0 1.5rem;
-      color: #ccc;
-    }
+    header {padding:3rem 1rem;text-align:center;}
+    header img {width:110px;height:110px;border-radius:50%;border:4px solid var(--primary);box-shadow:0 0 20px rgba(88,101,242,0.6);margin-bottom:1rem;}
+    header h1 {font-size:3rem;margin:0;color:var(--primary);font-weight:800;}
+    header p {font-size:1.2rem;margin:1rem 0 1.5rem;color:#ccc;}
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 2rem 0;
-      animation: fadeInUp 1.5s ease;
-    }
-    .btn {
-      padding: 0.9rem 2rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.3s;
-      text-decoration: none;
-      display: inline-block;
-      color: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.4);
-    }
-    .invite { background: var(--primary); }
-    .support { background: var(--secondary); }
-    .dashboard { background: var(--warning); }
+    .buttons {display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin:2rem 0;}
+    .btn {padding:1rem 2rem;border-radius:50px;font-size:1rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;color:white;background:linear-gradient(135deg,var(--primary),#4e5ed3);box-shadow:0 4px 15px rgba(0,0,0,0.4);transition:all .3s;}
+    .btn:hover {transform:translateY(-4px) scale(1.05);box-shadow:0 6px 18px rgba(0,0,0,0.5);}
+    .invite{background:linear-gradient(135deg,#5865F2,#4752C4);}
+    .support{background:linear-gradient(135deg,#2ecc71,#27ae60);}
+    .dashboard{background:linear-gradient(135deg,#e67e22,#d35400);}
+    .divider{width:80%;margin:3rem auto;border-top:2px solid rgba(255,255,255,0.1);}
 
-    .divider {
-      width: 80%;
-      margin: 3rem auto;
-      border-top: 2px solid rgba(255,255,255,0.1);
-    }
+    .showcase {display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;padding:2rem;max-width:1200px;margin:auto;}
+    .card {background:rgba(255,255,255,0.05);border-radius:14px;padding:1.8rem 1.3rem;text-align:center;transition:.3s;box-shadow:0 6px 14px rgba(0,0,0,0.3);}
+    .card:hover{transform:translateY(-8px) scale(1.02);background:rgba(255,255,255,0.1);}
+    .card i{font-size:2.5rem;margin-bottom:1rem;color:var(--primary);}
+    .card h3{margin:0.5rem 0;font-size:1.3rem;color:var(--secondary);}
+    .card p{font-size:0.9rem;color:#bbb;line-height:1.6;}
 
-    .top-controls {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      z-index: 999;
-    }
-    .ctrl-btn {
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-    }
-    .ctrl-btn:hover {
-      background: rgba(255,255,255,0.3);
-    }
+    .premium-section{background:rgba(243,156,18,0.08);border-top:2px dashed var(--premium);padding:3rem 1rem;margin-top:2rem;text-align:center;}
+    .premium-section h2{color:var(--premium);font-size:2rem;margin-bottom:2rem;}
+    .premium-card{background:rgba(243,156,18,0.15);border:1px solid var(--premium);border-radius:14px;padding:1.5rem;margin:1rem auto;max-width:500px;color:#fff;font-size:1rem;box-shadow:0 0 15px rgba(243,156,18,0.4);}
 
-    /* ✅ Showcase Section */
-    .showcase {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 14px;
-      padding: 1.8rem 1.3rem;
-      text-align: center;
-      transition: transform 0.3s, background 0.3s;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
-      animation: fadeInUp 1s ease;
-    }
-    .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      background: rgba(255,255,255,0.1);
-    }
-    .card i {
-      font-size: 2.7rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-    .card h3 {
-      margin: 0.5rem 0;
-      font-size: 1.4rem;
-      color: var(--secondary);
-    }
-    .card p {
-      font-size: 0.95rem;
-      color: #bbb;
-      line-height: 1.6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #aaa;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    /* 🎬 Animations */
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-    @keyframes fadeInDown {
-      from {opacity: 0; transform: translateY(-30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+    footer{text-align:center;padding:1rem;margin-top:3rem;font-size:0.9rem;color:#aaa;border-top:1px solid rgba(255,255,255,0.1);}
+    .bottom-controls{position:fixed;bottom:1rem;right:1rem;display:flex;gap:0.6rem;z-index:999;}
+    .ctrl-btn{background:rgba(255,255,255,0.15);border:none;color:white;padding:0.7rem 1.1rem;border-radius:50px;cursor:pointer;font-size:0.9rem;transition:0.3s;}
+    .ctrl-btn:hover{background:rgba(255,255,255,0.3);transform:scale(1.05);}
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <div class="top-controls">
-    <button class="ctrl-btn" onclick="toggleLang()">🌐 لغة</button>
-    <button class="ctrl-btn" onclick="toggleTheme()">🌓 المظهر</button>
-  </div>
-
   <header>
-    <h1>🚀 GxBot</h1>
-    <p id="desc">بوت ديسكورد الإداري المتكامل — إدارة، أمان، تفاعل، وألعاب!</p>
+    <img src="https://cdn.discordapp.com/attachments/1406963938565820416/1407693295869628481/IMG__.png?ex=68a7b0cb&is=68a65f4b&hm=b32c1f5a6f0e6031ab9c8fdf6d7797dc0e88ba6a678ca0f2755336b253937b6a&" alt="GxBot">
+    <h1>GxBot</h1>
+    <p id="desc"></p>
   </header>
 
   <div class="divider"></div>
-
   <div class="buttons">
-    <a class="btn invite" id="invite" href="https://discord.com/oauth2/authorize?client_id=1382655315820150794&permissions=8&scope=bot+applications.commands" target="_blank">➕ دعوة البوت</a>
-    <a class="btn support" id="support" href="https://discord.gg/eS7yuSMs9T" target="_blank">💬 سيرفر الدعم</a>
-    <a class="btn dashboard" id="dashboard" href="dashboard.html" target="_blank">📊 لوحة التحكم</a>
+    <a class="btn invite" id="invite" target="_blank"></a>
+    <a class="btn support" id="support" target="_blank"></a>
+    <a class="btn dashboard" id="dashboard" target="_blank"></a>
   </div>
-
   <div class="divider"></div>
 
   <!-- ✅ Showcase Section -->
-  <section class="showcase">
-    <div class="card"><i class="fa-solid fa-shield"></i><h3>🛡️ إدارة وتحكم شامل</h3><p>أدوات إدارية متكاملة للتحكم الكامل بالسيرفر من الرتب للقنوات.</p></div>
-    <div class="card"><i class="fa-solid fa-clipboard-list"></i><h3>📋 تسجيل ومتابعة الأحداث</h3><p>نظام لوج ذكي يسجل كل الأحداث والأنشطة داخل السيرفر.</p></div>
-    <div class="card"><i class="fa-solid fa-handshake"></i><h3>👋 ترحيب تلقائي ذكي</h3><p>رسائل ترحيب مخصصة مع صور وميزات إضافية للأعضاء الجدد.</p></div>
-    <div class="card"><i class="fa-solid fa-coins"></i><h3>💸 نظام اقتصاد وعملة كنتوس</h3><p>اقتصاد متكامل، محفظة وبنك لعملة **كنتوس** المميزة.</p></div>
-    <div class="card"><i class="fa-solid fa-circle-notch"></i><h3>🎡 عجلة حظ GX الأسطورية</h3><p>لعبة تفاعلية فريدة تزيد المتعة والتفاعل بين الأعضاء.</p></div>
-    <div class="card"><i class="fa-solid fa-store"></i><h3>🏪 نظام متجر متطور</h3><p>متجر ديناميكي بخواص التقييمات والثريدات للمحتوى.</p></div>
-    <div class="card"><i class="fa-solid fa-paint-brush"></i><h3>🎨 تخصيص ملفك</h3><p>خلفيات وخصائص شخصية لإبراز هويتك داخل السيرفر.</p></div>
-    <div class="card"><i class="fa-solid fa-chart-bar"></i><h3>📊 معلومات تقنية وإحصائيات</h3><p>لوحات عرض وإحصائيات دقيقة حول نشاط السيرفر.</p></div>
-    <div class="card"><i class="fa-solid fa-question-circle"></i><h3>🧾 مساعدة وإعداد سريع</h3><p>نظام إعداد مبسط مع شروحات جاهزة لكل ميزة.</p></div>
+  <section class="showcase" id="features"></section>
+
+  <!-- ⭐ Premium Features -->
+  <section class="premium-section">
+    <h2 id="prime-title"></h2>
+    <div class="premium-card" id="prime1"></div>
+    <div class="premium-card" id="prime2"></div>
+    <div class="premium-card" id="prime3"></div>
+    <div class="premium-card" id="prime4"></div>
   </section>
 
-  <footer>
-    &copy; 2025 GxBot — جميع الحقوق محفوظة.
-  </footer>
+  <footer id="footer"></footer>
+
+  <!-- 🌐 Floating Controls -->
+  <div class="bottom-controls">
+    <button class="ctrl-btn" onclick="toggleLang()">🌐</button>
+    <button class="ctrl-btn" onclick="toggleTheme()">🌓</button>
+  </div>
 
   <script>
     let lang = "ar";
     let theme = "dark";
 
+    const translations = {
+      ar: {
+        desc: "بوت ديسكورد الإداري المتكامل — إدارة، أمان، تفاعل، وألعاب!",
+        invite: "➕ دعوة البوت",
+        support: "💬 سيرفر الدعم",
+        dashboard: "📊 لوحة التحكم",
+        footer: "© 2025 GxBot — جميع الحقوق محفوظة.",
+        features: [
+          ["🛡️ إدارة وتحكم شامل", "أدوات إدارية متكاملة للتحكم الكامل بالسيرفر من الرتب للقنوات."],
+          ["📋 تسجيل ومتابعة الأحداث", "نظام لوج ذكي يسجل كل الأحداث والأنشطة داخل السيرفر."],
+          ["👋 ترحيب تلقائي ذكي", "رسائل ترحيب مخصصة مع صور وميزات إضافية للأعضاء الجدد."],
+          ["💸 نظام اقتصاد وعملة كنتوس", "اقتصاد متكامل، محفظة وبنك لعملة كنتوس المميزة."],
+          ["🎡 عجلة حظ GX الأسطورية", "لعبة تفاعلية فريدة تزيد المتعة والتفاعل بين الأعضاء."],
+          ["🏪 نظام متجر متطور", "متجر ديناميكي بخواص التقييمات والثريدات للمحتوى."],
+          ["🎨 تخصيص ملفك", "خلفيات وخصائص شخصية لإبراز هويتك داخل السيرفر."],
+          ["📊 معلومات تقنية وإحصائيات", "لوحات عرض وإحصائيات دقيقة حول نشاط السيرفر."],
+          ["🧾 مساعدة وإعداد سريع", "نظام إعداد مبسط مع شروحات جاهزة لكل ميزة."]
+        ],
+        primeTitle: "🌟 مميزات GxBot Prime",
+        prime: [
+          "🔒 أدوات أمان متقدمة ومراقبة السيرفر",
+          "🚀 تخصيص أوسع للترحيب والتفاعل",
+          "💎 خصائص حصرية في النظام الاقتصادي",
+          "📈 تقارير تفصيلية وإحصاءات متقدمة"
+        ]
+      },
+      en: {
+        desc: "The ultimate Discord bot — Management, Security, Economy & More!",
+        invite: "➕ Invite Bot",
+        support: "💬 Support Server",
+        dashboard: "📊 Dashboard",
+        footer: "© 2025 GxBot — All rights reserved.",
+        features: [
+          ["🛡️ Full Management & Control", "Advanced tools to manage roles, channels and permissions."],
+          ["📋 Event Logging", "Smart log system that records all events and activities."],
+          ["👋 Smart Auto-Welcome", "Custom welcome messages with images and extra features."],
+          ["💸 Economy & Kentos Currency", "Complete economy system with wallet and bank using Kentos."],
+          ["🎡 Legendary GX Wheel", "Unique interactive game to boost fun and engagement."],
+          ["🏪 Advanced Shop System", "Dynamic shop with ratings and threads support."],
+          ["🎨 Profile Customization", "Backgrounds and styles to highlight your identity."],
+          ["📊 Tech Info & Stats", "Detailed dashboards and analytics for your server."],
+          ["🧾 Help & Quick Setup", "Simple setup system with ready tutorials."]
+        ],
+        primeTitle: "🌟 GxBot Prime Features",
+        prime: [
+          "🔒 Advanced security tools and server monitoring",
+          "🚀 Extended customization for welcome & interaction",
+          "💎 Exclusive features in the economy system",
+          "📈 Detailed reports and advanced analytics"
+        ]
+      }
+    };
+
+    function renderTexts() {
+      const t = translations[lang];
+      document.querySelector("#desc").innerText = t.desc;
+      document.querySelector("#invite").innerText = t.invite;
+      document.querySelector("#support").innerText = t.support;
+      document.querySelector("#dashboard").innerText = t.dashboard;
+      document.querySelector("#footer").innerText = t.footer;
+      document.querySelector("#prime-title").innerText = t.primeTitle;
+      document.querySelector("#prime1").innerText = t.prime[0];
+      document.querySelector("#prime2").innerText = t.prime[1];
+      document.querySelector("#prime3").innerText = t.prime[2];
+      document.querySelector("#prime4").innerText = t.prime[3];
+
+      const featuresContainer = document.querySelector("#features");
+      featuresContainer.innerHTML = "";
+      t.features.forEach(f => {
+        featuresContainer.innerHTML += `<div class="card"><i class="fa-solid fa-star"></i><h3>${f[0]}</h3><p>${f[1]}</p></div>`;
+      });
+    }
+
     function toggleLang() {
       lang = lang === "ar" ? "en" : "ar";
-      if (lang === "en") {
-        document.querySelector("html").setAttribute("dir", "ltr");
-        document.querySelector("#desc").innerText = "The ultimate Discord bot — Management, Security, Economy & More!";
-        document.querySelector("#invite").innerText = "➕ Invite Bot";
-        document.querySelector("#support").innerText = "💬 Support Server";
-        document.querySelector("#dashboard").innerText = "📊 Dashboard";
-      } else {
-        document.querySelector("html").setAttribute("dir", "rtl");
-        document.querySelector("#desc").innerText = "بوت ديسكورد الإداري المتكامل — إدارة، أمان، تفاعل، وألعاب!";
-        document.querySelector("#invite").innerText = "➕ دعوة البوت";
-        document.querySelector("#support").innerText = "💬 سيرفر الدعم";
-        document.querySelector("#dashboard").innerText = "📊 لوحة التحكم";
-      }
+      document.querySelector("html").setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+      renderTexts();
     }
 
     function toggleTheme() {
       theme = theme === "dark" ? "light" : "dark";
       document.body.classList.toggle("light");
     }
+
+    renderTexts();
   </script>
 </body>
 </html>
