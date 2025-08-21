@@ -24,10 +24,12 @@
       overflow-x: hidden;
       position: relative;
     }
+
     body.light {
       background: linear-gradient(-45deg, #fff, #f5f5f5, #ebebeb, #dedede);
       color: var(--text-dark);
     }
+
     @keyframes gradientBG {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
@@ -55,11 +57,28 @@
     }
 
     header {
-      padding: 2rem 1rem;
+      padding: 4rem 1rem 2rem; /* نزلنا الصورة شوية */
       text-align: center;
       position: relative;
       z-index: 2;
     }
+
+    /* زر تسجيل الدخول */
+    .login-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background: #5865F2;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 0 12px rgba(88,101,242,0.6);
+      transition: 0.3s;
+      z-index: 15;
+    }
+    .login-btn:hover { background:#4752c4; box-shadow:0 0 18px rgba(88,101,242,0.9); }
 
     /* منيو اللغة والمظهر */
     .top-controls {
@@ -70,20 +89,6 @@
       gap: 0.6rem;
       z-index: 10;
     }
-    .login-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--secondary);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: 0.3s;
-    }
-    .login-btn:hover {filter: brightness(1.2);}
 
     select {
       padding: 0.4rem 0.7rem;
@@ -98,19 +103,43 @@
     select:hover {background: rgba(255,255,255,0.3);}
     body.light select {color: var(--text-dark); background: rgba(0,0,0,0.1);}
 
+    /* صورة البوت */
     header img {
       width: 130px;
       height: 130px;
       border-radius: 50%;
       border: 4px solid var(--primary);
-      box-shadow: 0 0 25px rgba(241,196,15,0.8);
-      margin-bottom: 1rem;
+      box-shadow: 0 0 25px rgba(241,196,15,0.6);
+      margin-bottom: 1.5rem;
+      animation: popIn 1.2s ease;
+      background: rgba(0,0,0,0.3); /* شفافية خلفية لتوضيح الصورة */
     }
-    header h1 {font-size: 3rem; margin: 0; color: var(--primary); font-weight: 800;}
-    header p {font-size: 1.2rem; max-width: 700px; margin: 1rem auto 1.5rem; color: inherit; line-height: 1.8;}
+    @keyframes popIn {
+      from {opacity: 0; transform: scale(0.6);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: var(--primary);
+      font-weight: 800;
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 1rem auto 1.5rem;
+      line-height: 1.8;
+    }
 
     /* أزرار */
-    .buttons {display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin:2rem 0;}
+    .buttons {
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:1rem;
+      margin:2rem 0;
+    }
     .btn {
       padding:1rem 2rem;
       border-radius:50px;
@@ -121,60 +150,30 @@
       text-decoration:none;
       color:white;
       background:linear-gradient(135deg,var(--secondary),#4040c4);
-      box-shadow:0 4px 15px rgba(0,0,0,0.4);
+      box-shadow:0 0 15px rgba(88,101,242,0.5); /* لمعة خفيفة */
       transition:all .35s cubic-bezier(.19,1,.22,1);
       position:relative;
       z-index:1;
     }
     .btn:hover {
-      transform:translateY(-6px) scale(1.12) rotate(-1deg);
-      box-shadow:0 10px 25px rgba(0,0,0,0.6);
-      filter:brightness(1.15);
-      text-shadow:0 0 8px rgba(255,255,255,0.6);
+      transform:translateY(-6px) scale(1.08);
+      box-shadow:0 0 25px rgba(88,101,242,0.8);
+      filter:brightness(1.1);
     }
     .invite{background:linear-gradient(135deg,#f1c40f,#d4ac0d);}
     .support{background:linear-gradient(135deg,#27ae60,#1e8449);}
     .dashboard{background:linear-gradient(135deg,#e67e22,#ba4a00);}
     .divider{width:80%;margin:3rem auto;border-top:2px solid rgba(255,255,255,0.1);}
-
-    /* الكروت */
-    .showcase {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-      gap:1.5rem;
-      padding:2rem;
-      max-width:1200px;
-      margin:auto;
-      position:relative;
-      z-index:1;
-    }
-    .card {
-      background:rgba(255,255,255,0.08); /* أوضح */
-      border-radius:14px;
-      padding:1.8rem 1.3rem;
-      text-align:center;
-      transition:.3s;
-      box-shadow:0 6px 14px rgba(0,0,0,0.3);
-    }
-    .card:hover {transform:translateY(-8px) scale(1.04); background:rgba(255,255,255,0.15);}
-    .card h3 {margin:0.5rem 0; font-size:1.3rem; color:var(--secondary);}
-    .card p {font-size:0.95rem; color:inherit; line-height:1.6;}
-
-    /* برايم */
-    .premium-section {background:rgba(243,156,18,0.08); border-top:2px dashed var(--primary); padding:3rem 1rem; margin-top:2rem; text-align:center; z-index:1; position:relative;}
-    .premium-section h2 {color:var(--primary); font-size:2rem; margin-bottom:2rem;}
-    .premium-card {background:rgba(243,156,18,0.15); border:1px solid var(--primary); border-radius:14px; padding:1.5rem; margin:1rem auto; max-width:500px; color:inherit; font-size:1rem; box-shadow:0 0 15px rgba(243,156,18,0.4);}
-
-    footer {text-align:center; padding:1rem; margin-top:3rem; font-size:0.9rem; color:#aaa; border-top:1px solid rgba(255,255,255,0.1);}
-    body.light footer {color:#444;}
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <!-- رموز متحركة -->
   <div class="symbols" id="symbols"></div>
 
   <header>
-    <a href="#" class="login-btn">🔑 تسجيل دخول</a>
+    <a href="#" class="login-btn"><i class="fa-brands fa-discord"></i> تسجيل الدخول</a>
+
     <div class="top-controls">
       <select id="langSelect" onchange="changeLang(this.value)">
         <option value="ar">العربية</option>
@@ -190,3 +189,24 @@
     <h1>GxBot</h1>
     <p id="desc"></p>
   </header>
+
+  <div class="divider"></div>
+  <div class="buttons">
+    <a class="btn invite" id="invite" target="_blank"></a>
+    <a class="btn support" id="support" target="_blank"></a>
+    <a class="btn dashboard" id="dashboard" target="_blank"></a>
+  </div>
+  <div class="divider"></div>
+
+  <section class="showcase" id="features"></section>
+  <section class="premium-section">
+    <h2 id="prime-title"></h2>
+    <div class="premium-card" id="prime1"></div>
+    <div class="premium-card" id="prime2"></div>
+    <div class="premium-card" id="prime3"></div>
+    <div class="premium-card" id="prime4"></div>
+  </section>
+
+  <footer id="footer"></footer>
+</body>
+</html>
