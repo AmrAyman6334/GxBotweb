@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ GxBotPrime</title>
+  <style>
+    /* ===== خلفية متحركة نيون ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Cairo", sans-serif;
+      background: linear-gradient(270deg, #0f0f1a, #1a1a2e, #0f0f1a);
+      background-size: 600% 600%;
+      animation: neonBackground 12s ease infinite;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    @keyframes neonBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== الهيدر ===== */
+    header {
+      padding: 60px 20px 30px;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #00ffe0;
+      text-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #ddd;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ===== صورة البوت ===== */
+    .bot-logo {
+      width: 140px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #00ffe0, 0 0 40px #00ffe0;
+      animation: pulse 3s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* ===== الأزرار ===== */
+    .buttons {
+      margin-top: 40px;
+    }
+    a.button {
+      display: inline-block;
+      padding: 14px 28px;
+      margin: 12px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 0 15px rgba(0, 255, 224, 0.7);
+    }
+    a.invite {
+      background: #5865f2;
+    }
+    a.invite:hover {
+      background: #4752c4;
+      transform: translateY(-3px);
+    }
+    a.support {
+      background: #00c896;
+    }
+    a.support:hover {
+      background: #00a678;
+      transform: translateY(-3px);
+    }
+
+    /* ===== الفوتر ===== */
+    footer {
+      margin-top: 70px;
+      font-size: 0.9rem;
+      color: #aaa;
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://cdn.discordapp.com/avatars/1382655315820150794/a_49b186b0f49f3ba59e2f81e7ef8b4c4e.gif?size=1024" alt="Bot Logo" class="bot-logo">
+    <h1>⚡ GxBotPrime</h1>
+    <p>بوت إداري متكامل، يوفر لك الإدارة الذكية، الحماية، الاقتصاد، والتفاعل داخل سيرفرك 🚀</p>
+    <div class="buttons">
+      <a href="https://discord.com/oauth2/authorize?client_id=1382655315820150794&permissions=8&scope=bot+applications.commands" class="button invite">➕ دعوة البوت</a>
+      <a href="https://discord.gg/eS7yuSMs9T" class="button support">💬 سيرفر الدعم</a>
+    </div>
+  </header>
+
+  <footer>
+    © 2025 GxBotPrime — جميع الحقوق محفوظة ⚡
+  </footer>
+</body>
+</html>
