@@ -6,29 +6,29 @@
   <title>GxBot | بوت ديسكورد</title>
   <style>
     :root {
-      --primary: #00e6e6;
-      --bg-dark: #181818;
-      --bg-light: #f4f4f9;
-      --text-dark: #1e1e2f;
-      --text-light: #ffffff;
+      --primary: #5865F2;
+      --secondary: #2ecc71;
+      --warning: #e67e22;
+      --dark: #1e1e2f;
+      --light: #f9f9f9;
+      --text-dark: #222;
+      --text-light: #f0f0f0;
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #252547, #181818);
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(-45deg, #1e1e2f, #252547, #181818, #202040);
       background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
+      animation: gradientBG 12s ease infinite;
       color: var(--text-light);
-      text-align: center;
       transition: background 0.4s, color 0.4s;
+      overflow-x: hidden;
     }
-
     body.light {
-      background: linear-gradient(135deg, #f9f9f9, #e0e0e0, #ffffff);
+      background: linear-gradient(-45deg, #ffffff, #f0f0f0, #eaeaea, #dcdcdc);
       color: var(--text-dark);
     }
-
     @keyframes gradientBG {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
@@ -36,96 +36,150 @@
     }
 
     header {
-      padding: 2rem 1rem 1rem;
+      padding: 3rem 1rem;
+      text-align: center;
+      animation: fadeInDown 1.2s ease;
     }
     header h1 {
-      font-size: 3.2rem;
+      font-size: 3.5rem;
       margin: 0;
       color: var(--primary);
-      letter-spacing: 1px;
+      font-weight: 800;
     }
     header p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      margin: 1rem 0 1.5rem;
       color: #ccc;
-      margin-top: 0.5rem;
-    }
-
-    /* التحكمات */
-    .controls {
-      margin: 1rem;
-    }
-    .controls select {
-      padding: 0.5rem;
-      margin: 0.5rem;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
     }
 
     .buttons {
-      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+      animation: fadeInUp 1.5s ease;
     }
     .btn {
-      display: inline-block;
       padding: 0.9rem 2rem;
-      margin: 0.5rem;
-      border-radius: 10px;
-      font-size: 1.1rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
       text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-    }
-    .invite {
-      background-color: #5865F2;
+      display: inline-block;
       color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-    .invite:hover {
-      background-color: #4752C4;
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.4);
     }
-    .support {
-      background-color: #2ecc71;
+    .invite { background: var(--primary); }
+    .support { background: var(--secondary); }
+    .dashboard { background: var(--warning); }
+
+    .divider {
+      width: 80%;
+      margin: 3rem auto;
+      border-top: 2px solid rgba(255,255,255,0.1);
+    }
+
+    .top-controls {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 999;
+    }
+    .ctrl-btn {
+      background: rgba(255,255,255,0.15);
+      border: none;
       color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s;
     }
-    .support:hover {
-      background-color: #27ae60;
+    .ctrl-btn:hover {
+      background: rgba(255,255,255,0.3);
     }
-    .dashboard {
-      background-color: #e67e22;
-      color: white;
+
+    /* ✅ Showcase Section */
+    .showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
-    .dashboard:hover {
-      background-color: #d35400;
+    .card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 1.8rem 1.3rem;
+      text-align: center;
+      transition: transform 0.3s, background 0.3s;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255,255,255,0.1);
+    }
+    .card i {
+      font-size: 2.7rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .card h3 {
+      margin: 0.5rem 0;
+      font-size: 1.4rem;
+      color: var(--secondary);
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #bbb;
+      line-height: 1.6;
     }
 
     footer {
-      margin-top: 3rem;
+      text-align: center;
       padding: 1rem;
-      background: rgba(0,0,0,0.3);
+      margin-top: 3rem;
       font-size: 0.9rem;
       color: #aaa;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
+    /* 🎬 Animations */
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+  <div class="top-controls">
+    <button class="ctrl-btn" onclick="toggleLang()">🌐 لغة</button>
+    <button class="ctrl-btn" onclick="toggleTheme()">🌓 المظهر</button>
+  </div>
+
   <header>
     <h1>🚀 GxBot</h1>
     <p id="desc">بوت ديسكورد الإداري المتكامل — إدارة، أمان، تفاعل، وألعاب!</p>
   </header>
 
-  <!-- التحكم في اللغة والسيم -->
-  <div class="controls">
-    <select id="lang" onchange="changeLang(this.value)">
-      <option value="ar">🇸🇦 العربية</option>
-      <option value="en">🇬🇧 English</option>
-    </select>
-    <select id="theme" onchange="changeTheme(this.value)">
-      <option value="dark">🌑 الوضع الداكن</option>
-      <option value="light">🌕 الوضع الفاتح</option>
-    </select>
-  </div>
+  <div class="divider"></div>
 
   <div class="buttons">
     <a class="btn invite" id="invite" href="https://discord.com/oauth2/authorize?client_id=1382655315820150794&permissions=8&scope=bot+applications.commands" target="_blank">➕ دعوة البوت</a>
@@ -133,15 +187,34 @@
     <a class="btn dashboard" id="dashboard" href="dashboard.html" target="_blank">📊 لوحة التحكم</a>
   </div>
 
+  <div class="divider"></div>
+
+  <!-- ✅ Showcase Section -->
+  <section class="showcase">
+    <div class="card"><i class="fa-solid fa-shield"></i><h3>🛡️ إدارة وتحكم شامل</h3><p>أدوات إدارية متكاملة للتحكم الكامل بالسيرفر من الرتب للقنوات.</p></div>
+    <div class="card"><i class="fa-solid fa-clipboard-list"></i><h3>📋 تسجيل ومتابعة الأحداث</h3><p>نظام لوج ذكي يسجل كل الأحداث والأنشطة داخل السيرفر.</p></div>
+    <div class="card"><i class="fa-solid fa-handshake"></i><h3>👋 ترحيب تلقائي ذكي</h3><p>رسائل ترحيب مخصصة مع صور وميزات إضافية للأعضاء الجدد.</p></div>
+    <div class="card"><i class="fa-solid fa-coins"></i><h3>💸 نظام اقتصاد وعملة كنتوس</h3><p>اقتصاد متكامل، محفظة وبنك لعملة **كنتوس** المميزة.</p></div>
+    <div class="card"><i class="fa-solid fa-circle-notch"></i><h3>🎡 عجلة حظ GX الأسطورية</h3><p>لعبة تفاعلية فريدة تزيد المتعة والتفاعل بين الأعضاء.</p></div>
+    <div class="card"><i class="fa-solid fa-store"></i><h3>🏪 نظام متجر متطور</h3><p>متجر ديناميكي بخواص التقييمات والثريدات للمحتوى.</p></div>
+    <div class="card"><i class="fa-solid fa-paint-brush"></i><h3>🎨 تخصيص ملفك</h3><p>خلفيات وخصائص شخصية لإبراز هويتك داخل السيرفر.</p></div>
+    <div class="card"><i class="fa-solid fa-chart-bar"></i><h3>📊 معلومات تقنية وإحصائيات</h3><p>لوحات عرض وإحصائيات دقيقة حول نشاط السيرفر.</p></div>
+    <div class="card"><i class="fa-solid fa-question-circle"></i><h3>🧾 مساعدة وإعداد سريع</h3><p>نظام إعداد مبسط مع شروحات جاهزة لكل ميزة.</p></div>
+  </section>
+
   <footer>
     &copy; 2025 GxBot — جميع الحقوق محفوظة.
   </footer>
 
   <script>
-    function changeLang(lang) {
+    let lang = "ar";
+    let theme = "dark";
+
+    function toggleLang() {
+      lang = lang === "ar" ? "en" : "ar";
       if (lang === "en") {
         document.querySelector("html").setAttribute("dir", "ltr");
-        document.querySelector("#desc").innerText = "The ultimate Discord bot — Management, Security, Fun & More!";
+        document.querySelector("#desc").innerText = "The ultimate Discord bot — Management, Security, Economy & More!";
         document.querySelector("#invite").innerText = "➕ Invite Bot";
         document.querySelector("#support").innerText = "💬 Support Server";
         document.querySelector("#dashboard").innerText = "📊 Dashboard";
@@ -154,12 +227,9 @@
       }
     }
 
-    function changeTheme(theme) {
-      if (theme === "light") {
-        document.body.classList.add("light");
-      } else {
-        document.body.classList.remove("light");
-      }
+    function toggleTheme() {
+      theme = theme === "dark" ? "light" : "dark";
+      document.body.classList.toggle("light");
     }
   </script>
 </body>
