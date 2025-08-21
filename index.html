@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GxBot | بوت ديسكورد</title>
+
+  <!-- 🎨 تنسيقات -->
   <style>
     :root {
       --primary: #f1c40f;
@@ -16,8 +18,8 @@
 
     body {
       margin: 0;
-      font-family: 'Poppins', 'Segoe UI', sans-serif;
-      background: linear-gradient(-45deg, #1a1a2e, #181824, #202040, #1f1b2e);
+      font-family: 'Poppins','Segoe UI',sans-serif;
+      background: linear-gradient(-45deg,#1a1a2e,#181824,#202040,#1f1b2e);
       background-size: 400% 400%;
       animation: gradientBG 20s ease infinite;
       color: var(--text-light);
@@ -25,19 +27,18 @@
       position: relative;
     }
     body.light {
-      background: linear-gradient(-45deg, #fff, #f5f5f5, #ebebeb, #dedede);
+      background: linear-gradient(-45deg,#fff,#f5f5f5,#ebebeb,#dedede);
       color: var(--text-dark);
     }
     @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
     }
 
     /* ⚡ رموز متحركة */
     .symbols {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; inset: 0;
       width: 100%; height: 100%;
       overflow: hidden;
       z-index: 0;
@@ -54,20 +55,33 @@
       to {transform: translateY(-10vh);}
     }
 
+    /* 🎯 الهيدر */
     header {
       padding: 2rem 1rem;
       text-align: center;
       position: relative;
       z-index: 2;
     }
+    header img {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      box-shadow: 0 0 25px rgba(241,196,15,0.8);
+      margin-bottom: 1rem;
+      animation: popIn 1.2s ease;
+    }
+    @keyframes popIn {
+      from {opacity: 0; transform: scale(0.6);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    header h1 {font-size: 3rem; margin: 0; color: var(--primary); font-weight: 800;}
+    header p {font-size: 1.2rem; max-width: 700px; margin: 1rem auto 1.5rem; line-height: 1.8;}
 
-    /* منيو اللغة والمظهر */
+    /* 🌍 منيو اللغة والثيم */
     .top-controls {
       position: absolute;
-      top: 1rem;
-      left: 1rem;
-      display: flex;
-      gap: 0.6rem;
+      top: 1rem; left: 1rem;
+      display: flex; gap: 0.6rem;
       z-index: 10;
     }
     select {
@@ -83,38 +97,17 @@
     select:hover {background: rgba(255,255,255,0.3);}
     body.light select {color: var(--text-dark); background: rgba(0,0,0,0.1);}
 
-    header img {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      border: 4px solid var(--primary);
-      box-shadow: 0 0 25px rgba(241,196,15,0.8);
-      margin-bottom: 1rem;
-      animation: popIn 1.2s ease;
-    }
-    @keyframes popIn {
-      from {opacity: 0; transform: scale(0.6);}
-      to {opacity: 1; transform: scale(1);}
-    }
-    header h1 {font-size: 3rem; margin: 0; color: var(--primary); font-weight: 800;}
-    header p {font-size: 1.2rem; max-width: 700px; margin: 1rem auto 1.5rem; color: inherit; line-height: 1.8;}
-
-    /* أزرار */
-    .buttons {display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin:2rem 0;}
+    /* 🔘 الأزرار */
+    .buttons {display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin:2rem 0;}
     .btn {
       padding:1rem 2rem;
       border-radius:50px;
-      font-size:1rem;
-      font-weight:600;
-      border:none;
-      cursor:pointer;
-      text-decoration:none;
-      color:white;
+      font-size:1rem; font-weight:600;
+      text-decoration:none; color:white;
+      border:none; cursor:pointer;
       background:linear-gradient(135deg,var(--secondary),#4040c4);
       box-shadow:0 4px 15px rgba(0,0,0,0.4);
       transition:all .35s cubic-bezier(.19,1,.22,1);
-      position:relative;
-      z-index:1;
     }
     .btn:hover {
       transform:translateY(-6px) scale(1.12) rotate(-1deg);
@@ -126,16 +119,13 @@
     .dashboard{background:linear-gradient(135deg,#e67e22,#ba4a00);}
     .divider{width:80%;margin:3rem auto;border-top:2px solid rgba(255,255,255,0.1);}
 
-    /* الكروت */
+    /* 📦 كروت المميزات */
     .showcase {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-      gap:1.5rem;
-      padding:2rem;
-      max-width:1200px;
-      margin:auto;
-      position:relative;
-      z-index:1;
+      gap:1.5rem; padding:2rem;
+      max-width:1200px; margin:auto;
+      position:relative; z-index:1;
     }
     .card {
       background:rgba(255,255,255,0.05);
@@ -144,26 +134,44 @@
       text-align:center;
       transition:.3s;
       box-shadow:0 6px 14px rgba(0,0,0,0.3);
-      word-wrap: break-word;
     }
     .card:hover {transform:translateY(-8px) scale(1.04); background:rgba(255,255,255,0.1);}
     .card h3 {margin:0.5rem 0; font-size:1.3rem; color:var(--secondary);}
-    .card p {font-size:0.95rem; color:inherit; line-height:1.6;}
+    .card p {font-size:0.95rem; line-height:1.6;}
 
-    /* برايم */
-    .premium-section {background:rgba(243,156,18,0.08); border-top:2px dashed var(--primary); padding:3rem 1rem; margin-top:2rem; text-align:center; z-index:1; position:relative;}
+    /* 🌟 البرايم */
+    .premium-section {
+      background:rgba(243,156,18,0.08);
+      border-top:2px dashed var(--primary);
+      padding:3rem 1rem; margin-top:2rem;
+      text-align:center; position:relative;
+    }
     .premium-section h2 {color:var(--primary); font-size:2rem; margin-bottom:2rem;}
-    .premium-card {background:rgba(243,156,18,0.15); border:1px solid var(--primary); border-radius:14px; padding:1.5rem; margin:1rem auto; max-width:500px; color:inherit; font-size:1rem; box-shadow:0 0 15px rgba(243,156,18,0.4);}
+    .premium-card {
+      background:rgba(243,156,18,0.15);
+      border:1px solid var(--primary);
+      border-radius:14px; padding:1.5rem;
+      margin:1rem auto; max-width:500px;
+      box-shadow:0 0 15px rgba(243,156,18,0.4);
+    }
 
-    footer {text-align:center; padding:1rem; margin-top:3rem; font-size:0.9rem; color:#aaa; border-top:1px solid rgba(255,255,255,0.1);}
+    /* 📝 الفوتر */
+    footer {
+      text-align:center; padding:1rem; margin-top:3rem;
+      font-size:0.9rem; color:#aaa;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
     body.light footer {color:#444;}
   </style>
+
+  <!-- أيقونات -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <!-- رموز متحركة -->
+  <!-- ⚡ رموز الخلفية -->
   <div class="symbols" id="symbols"></div>
 
+  <!-- 🎯 الهيدر -->
   <header>
     <div class="top-controls">
       <select id="langSelect" onchange="changeLang(this.value)">
@@ -176,22 +184,26 @@
       </select>
     </div>
 
-    <img src="https://cdn.discordapp.com/attachments/1407958409642512386/1407996538470273097/IMG__.png?ex=68a82276&is=68a6d0f6&hm=bfaf118b78a934a968c06ce2081527c66669c6f7c7864fb2d38df496ec382cad" alt="GxBot">
-    
+    <img src="https://cdn.discordapp.com/attachments/1407958409642512386/1407996538470273097/IMG__.png" alt="GxBot">
     <h1>GxBot</h1>
     <p id="desc"></p>
   </header>
 
   <div class="divider"></div>
+
+  <!-- 🔘 الأزرار -->
   <div class="buttons">
-    <a class="btn invite" id="invite" target="_blank"></a>
-    <a class="btn support" id="support" target="_blank"></a>
-    <a class="btn dashboard" id="dashboard" target="_blank"></a>
+    <a class="btn invite" id="invite" href="https://discord.com/oauth2/authorize?client_id=1382655315820150794&permissions=8&scope=bot+applications.commands" target="_blank"></a>
+    <a class="btn support" id="support" href="https://discord.gg/eS7yuSMs9T" target="_blank"></a>
+    <a class="btn dashboard" id="dashboard" href="#" target="_blank"></a>
   </div>
+
   <div class="divider"></div>
 
+  <!-- 📦 المميزات -->
   <section class="showcase" id="features"></section>
 
+  <!-- 🌟 البرايم -->
   <section class="premium-section">
     <h2 id="prime-title"></h2>
     <div class="premium-card" id="prime1"></div>
@@ -200,8 +212,10 @@
     <div class="premium-card" id="prime4"></div>
   </section>
 
+  <!-- 📝 الفوتر -->
   <footer id="footer"></footer>
 
+  <!-- ⚙️ سكربت -->
   <script>
     let lang = "ar";
     let theme = "dark";
