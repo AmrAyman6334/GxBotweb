@@ -1,95 +1,204 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>موقعي البسيط</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>السوق المظلم — تصميم داكن</title>
   <style>
-    :root {
-      --bg-light: #f9f9f9;
-      --text-light: #222;
-      --card-light: #fff;
-
-      --bg-dark: #1a1a1a;
-      --text-dark: #f5f5f5;
-      --card-dark: #2a2a2a;
+    :root{
+      --bg:#070707;
+      --panel:#111;
+      --muted:#d6d6d6;
+      --red:#b30c0c;
+      --deep:#5c0000;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg,#050505 0%, #0d0d0d 100%);
+      color:var(--muted);
+      background-size:cover;
+      background-position:center;
+      transition:all .25s ease;
+      direction:rtl;
+      position:relative;
+      overflow-x:hidden;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg-light);
-      color: var(--text-light);
-      transition: all 0.3s;
-      background-size: cover;
-      background-position: center;
+    /* طبقة تأثير 'دموي' فوق الخلفية */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        radial-gradient(800px 400px at 10% 12%, rgba(179,12,12,0.16), transparent 12%),
+        radial-gradient(600px 300px at 90% 30%, rgba(92,0,0,0.12), transparent 12%),
+        linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.7));
+      mix-blend-mode:overlay;
     }
 
-    header {
-      text-align: center;
-      padding: 20px;
-      font-size: 28px;
-      font-weight: bold;
+    header{
+      text-align:center;
+      padding:28px 16px;
+      font-size:28px;
+      font-weight:800;
+      letter-spacing:1px;
+      z-index:2;
+      position:relative;
     }
 
-    .theme-toggle {
-      display: block;
-      margin: 0 auto 20px;
-      padding: 10px 20px;
-      cursor: pointer;
-      border: none;
-      border-radius: 8px;
-      background: #0077ff;
-      color: white;
-      font-size: 16px;
+    .wrap{
+      max-width:1000px;
+      margin:0 auto;
+      padding:12px;
+      position:relative;
+      z-index:2;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
+    .theme-toggle{
+      display:block;
+      margin:0 auto 18px;
+      padding:10px 18px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.04);
+      background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:var(--muted);
+      cursor:pointer;
+      font-weight:700;
     }
 
-    .card {
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      background: var(--card-light);
-      transition: all 0.3s;
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:18px;
+      margin-top:18px;
     }
 
-    /* مظهر غامق */
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-dark);
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.28));
+      border:1px solid rgba(255,255,255,0.03);
+      padding:18px;
+      border-radius:12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      min-height:110px;
+      transition:transform .18s;
+      color:var(--muted);
     }
-    body.dark .card {
-      background: var(--card-dark);
-      color: var(--text-dark);
+    .card:hover{ transform:translateY(-6px); }
+
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:8px;
+      background: linear-gradient(180deg,var(--red),var(--deep));
+      color:#fff;
+      font-weight:800;
+      box-shadow:0 8px 24px rgba(91,0,0,0.35);
+      margin-bottom:10px;
     }
+
+    .muted{ color:#bdbdbd; font-size:14px; }
+
+    .img-input{ margin-top:14px; display:flex; gap:8px; }
+    .img-input input{
+      flex:1;
+      padding:9px 10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.02);
+      color:var(--muted);
+      outline:none;
+    }
+    .img-input button{
+      padding:9px 12px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      background: linear-gradient(90deg,var(--red),var(--deep));
+      color:white;
+      font-weight:800;
+    }
+
+    footer{ text-align:center; margin:28px 0; color:#8f8f8f; font-size:13px; position:relative; z-index:2; }
   </style>
 </head>
 <body>
-  <header>NIGGERS</header>
-  <button class="theme-toggle" onclick="toggleTheme()">🌗 تبديل المظهر</button>
+  <header>سوق العبيد — مظهر داكن &amp; دموي</header>
 
-  <div class="cards">
-    <div class="card">📝 أقوى متجر لبيع العبيد في الشرق الأوسط </div>
-    <div class="card">📊 يوجد لدينا عبسد بجميع الأنواع (يوجد شرس) </div>
-    <div class="card">⚡ خدمات توصيل وترويض للعبيد بأعلى مستوى </div>
+  <div class="wrap">
+    <div style="text-align:center;">
+      <button class="theme-toggle" onclick="toggleTheme()">🌗 تبديل المظهر</button>
+    </div>
+
+    <div class="cards" role="list">
+      <div class="card" role="listitem">
+        <div class="badge">🩸 متجر افتراضي</div>
+        <div class="muted">العبيد وما ادراك ما العبيد  — وصف آمن وقابل للتعديل.</div>
+      </div>
+
+      <div class="card" role="listitem">
+        <div class="badge">⚡ خدمات مميزة</div>
+        <div class="muted">جميع انواع تجاره العبيد عبر الانترنت.</div>
+      </div>
+
+      <div class="card" role="listitem">
+        <div class="badge">🔒 حماية</div>
+        <div class="muted">ترويض جميع انواع العبيد  24/7.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div class="muted">ضع رابط صورة خلفية مباشر (ينتهي بـ .jpg أو .png) ثم اضغط تطبيق:</div>
+      <div class="img-input" aria-label="خلفية">
+        <input id="bgUrl" placeholder="رابط الصورة المباشر (مثال: https://example.com/bg.jpg)">
+        <button onclick="applyBg()">تطبيق</button>
+      </div>
+      <div class="muted" style="margin-top:8px;">لو لم تُحمّل الصورة، سيُعرض التدرج الداكن مع تأثيرات حمراء تلقائيًا.</div>
+    </div>
   </div>
 
+  <footer>نسخة آمنة من التصميم — عدّل النصوص بما يناسبك</footer>
+
   <script>
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
+    // اختياري: ضع هنا رابط افتراضي إن أردت
+    const defaultBg = ""; // مثال: "https://cdn.discordapp.com/attachments/1406963864192684084/1409672209869312090/photo.jpg?ex=68ae3b0d&is=68ace98d&hm=9edde98d284d115b2d78302c63385db954724ea0ebe89d7b6bb334eb092d532e&"
+    if(defaultBg) document.getElementById('bgUrl').value = defaultBg;
+
+    function toggleTheme(){
+      // تبديل بسيط بين تدرجات (لا ينطبق على نصوص الخطيرة)
+      document.body.classList.toggle('light-mode');
+      if(document.body.classList.contains('light-mode')){
+        document.body.style.filter = "brightness(1.05)";
+      } else {
+        document.body.style.filter = "";
+      }
     }
 
-    // مثال: تغيير الخلفية برابط صورة
-    // حط هنا رابط الصورة اللي عايزها
-    document.body.style.backgroundImage = "https://cdn.discordapp.com/attachments/1406963864192684084/1409672209869312090/photo.jpg?ex=68ae3b0d&is=68ace98d&hm=9edde98d284d115b2d78302c63385db954724ea0ebe89d7b6bb334eb092d532e&";
+    function applyBg(){
+      const url = document.getElementById('bgUrl').value.trim();
+      if(!url){
+        alert('ضع رابط صورة مباشر أولاً.');
+        return;
+      }
+      // نحاول تحميل الصورة للتأكد
+      const img = new Image();
+      img.onload = function(){
+        document.body.style.backgroundImage = `url("${url}")`;
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center center";
+        console.log('تم تطبيق الخلفية بنجاح');
+      };
+      img.onerror = function(){
+        alert('فشل تحميل الصورة. تأكد أن الرابط مباشر وينتهي بصيغة صورة (.jpg/.png). سيتم الاحتفاظ بالخلفية الافتراضية.');
+        document.body.style.backgroundImage = "";
+      };
+      img.src = url;
+    }
   </script>
 </body>
 </html>
