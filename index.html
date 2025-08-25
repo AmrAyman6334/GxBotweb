@@ -1,530 +1,95 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title> NIGGERS | NIGGERS </title>
-
-  <!-- أيقونات -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقعي البسيط</title>
   <style>
-    :root{
-      --brand:#4f46e5;        /* رئيسي */
-      --brand-2:#22c55e;      /* ثانوي */
-      --bg:#0f172a;           /* خلفية داكن */
-      --panel:#111827cc;      /* بطاقات داكنة شبه شفافة */
-      --text:#f8fafc;         /* نص فاتح */
-      --muted:#cbd5e1;        /* نص ثانوي */
-      --light:#ffffff;        /* أبيض */
-      --ring:#94a3b8;         /* حدود */
-    }
-    /* ثيم فاتح */
-    body.light{
-      --bg:#f7f7fb;
-      --panel:#ffffff;
-      --text:#0f172a;
-      --muted:#334155;
-      --ring:#e2e8f0;
+    :root {
+      --bg-light: #f9f9f9;
+      --text-light: #222;
+      --card-light: #fff;
+
+      --bg-dark: #1a1a1a;
+      --text-dark: #f5f5f5;
+      --card-dark: #2a2a2a;
     }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: "Segoe UI","Tajawal","Poppins",system-ui,Arial, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 10% -20%, #6366f140, transparent 60%),
-        radial-gradient(900px 500px at 110% 20%, #22c55e33, transparent 60%),
-        var(--bg);
-      color:var(--text);
-      transition: background .3s, color .3s;
-    }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:1200px; margin:0 auto; padding:0 1rem}
-
-    /* شريط علوي */
-    nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background:linear-gradient(to bottom, rgba(15,23,42,.8), rgba(15,23,42,.2));
-      border-bottom:1px solid var(--ring);
-    }
-    body.light nav{
-      background:linear-gradient(to bottom, rgba(255,255,255,.9), rgba(255,255,255,.6));
-    }
-    .nav-wrap{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: .75rem 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:.6rem; font-weight:800; letter-spacing:.2px
-    }
-    .brand i{color:var(--brand)}
-    .nav-actions{display:flex; gap:.5rem; align-items:center}
-    .btn{
-      padding:.65rem 1rem; border:1px solid var(--ring); border-radius:999px;
-      background:transparent; color:var(--text); cursor:pointer; font-weight:600;
-      transition:.2s; display:inline-flex; gap:.5rem; align-items:center;
-    }
-    .btn:hover{transform:translateY(-2px)}
-    .btn.brand{background:linear-gradient(135deg,var(--brand),#6d28d9); border:none; color:var(--light); box-shadow:0 10px 25px rgba(79,70,229,.35)}
-    .btn.ghost:hover{background:rgba(148,163,184,.15)}
-    .lang, .theme{padding:.55rem .8rem; border-radius:10px; border:1px solid var(--ring); background:transparent; color:inherit}
-
-    /* هيرو */
-    header.hero{
-      padding: 4.5rem 0 3rem;
-      text-align:center;
-      position:relative;
-    }
-    .hero h1{
-      margin:0 0 .8rem; font-size:clamp(1.8rem, 3.5vw, 3rem);
-    }
-    .hero p{
-      margin:0 auto 1.5rem; max-width:780px; color:var(--muted); line-height:1.8;
-      font-size:1.05rem;
-    }
-    .cta{display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; margin-top:1.2rem}
-    .chip{
-      display:inline-flex; gap:.5rem; align-items:center; padding:.45rem .8rem;
-      border-radius:999px; background:rgba(79,70,229,.15); border:1px solid var(--ring); color:var(--text);
-      font-size:.9rem;
-    }
-    body.light .chip{background:#eef2ff}
-
-    /* أقسام */
-    section{padding:3rem 0}
-    .grid{
-      display:grid; gap:1rem;
-      grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-    }
-    .card{
-      background:var(--panel); border:1px solid var(--ring); border-radius:18px;
-      padding:1.2rem; transition:.25s; box-shadow:0 8px 24px rgba(0,0,0,.15);
-    }
-    .card:hover{transform:translateY(-6px)}
-    .card h3{margin:.2rem 0 .4rem; color:var(--brand)}
-    .muted{color:var(--muted)}
-
-    /* أسعار */
-    .pricing .plan{position:relative; overflow:hidden}
-    .badge{
-      position:absolute; top:12px; inset-inline-end:12px;
-      background:linear-gradient(135deg,var(--brand-2),#16a34a);
-      color:var(--light); padding:.35rem .6rem; border-radius:999px; font-size:.75rem; font-weight:700;
-    }
-    .price{font-size:2rem; font-weight:800; margin:.4rem 0}
-    .features{list-style:none; padding:0; margin:0}
-    .features li{display:flex; gap:.6rem; align-items:center; margin:.35rem 0}
-    .features i{color:var(--brand-2)}
-
-    /* لوجو سكشن */
-    .logos{display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; opacity:.9}
-    .logos img{height:32px; filter:grayscale(1); opacity:.8}
-
-    /* تذييل */
-    footer{
-      border-top:1px solid var(--ring); padding:1.5rem 0; color:var(--muted);
-      text-align:center; margin-top:2rem;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: all 0.3s;
+      background-size: cover;
+      background-position: center;
     }
 
-    /* مودال تسجيل الدخول */
-    .modal{
-      position:fixed; inset:0; background:rgba(0,0,0,.6);
-      display:none; align-items:center; justify-content:center; z-index:60;
-      padding:1rem;
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
     }
-    .modal.show{display:flex}
-    .modal-card{
-      background:var(--panel); border:1px solid var(--ring); border-radius:16px; width:100%; max-width:420px; padding:1.2rem;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
-    }
-    .field{display:flex; flex-direction:column; gap:.35rem; margin:.7rem 0}
-    .input{
-      padding:.7rem .9rem; border-radius:12px; border:1px solid var(--ring); background:transparent; color:var(--text);
-      outline:none;
-    }
-    .row{display:flex; justify-content:space-between; align-items:center; gap:.6rem; flex-wrap:wrap}
-    .link{color:var(--brand)}
-    .hr{height:1px; background:var(--ring); margin:1rem 0}
-    .alert{background:rgba(220,38,38,.1); border:1px solid #ef4444; color:#fecaca; padding:.6rem .8rem; border-radius:12px; display:none}
-    body.light .alert{color:#7f1d1d; background:#fee2e2}
 
-    /* زر رجوع للأعلى */
-    .to-top{
-      position:fixed; bottom:16px; inset-inline-end:16px; z-index:40;
-      padding:.65rem .8rem; border-radius:999px; border:1px solid var(--ring); background:var(--panel);
-      display:none;
+    .theme-toggle {
+      display: block;
+      margin: 0 auto 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background: #0077ff;
+      color: white;
+      font-size: 16px;
     }
-    .to-top.show{display:inline-flex}
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: var(--card-light);
+      transition: all 0.3s;
+    }
+
+    /* مظهر غامق */
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    body.dark .card {
+      background: var(--card-dark);
+      color: var(--text-dark);
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="container nav-wrap">
-      <a href="#" class="brand" id="brand">
-        <i class="fa-solid fa-cube"></i>
-        <span>ExampleCorp</span>
-      </a>
+  <header>NIGGERS</header>
+  <button class="theme-toggle" onclick="toggleTheme()">🌗 تبديل المظهر</button>
 
-      <div class="nav-actions">
-        <select id="langSelect" class="lang" aria-label="Language">
-          <option value="ar">العربية</option>
-          <option value="en">English</option>
-        </select>
-        <select id="themeSelect" class="theme" aria-label="Theme">
-          <option value="dark">🌙 داكن</option>
-          <option value="light">☀️ فاتح</option>
-        </select>
-        <button class="btn ghost" id="loginBtn"><i class="fa-regular fa-user"></i><span id="loginText">تسجيل الدخول</span></button>
-        <a class="btn brand" href="#contact"><i class="fa-solid fa-paper-plane"></i><span id="ctaText">ابدأ الآن</span></a>
-      </div>
-    </div>
-  </nav>
-
-  <header class="hero container">
-    <span class="chip"><i class="fa-solid fa-bolt"></i><span id="chip1">منصة أعمال موثوقة</span></span>
-    <h1 id="h1"> أكبر متجر في الشرق الأوسط لبيع العبيد</h1>
-    <p id="sub">
-      نقدّم نظام تحليلات ولوحات تحكم وأتمتة مهام لمساعدتك على شرا عبيد  مع أمان عالي وتجربة استخدام مرنة يوجد عبيد كل الأنواع(💩) .
-    </p>
-    <div class="cta">
-      <a class="btn brand" href="#pricing" id="ctaPrimary"><i class="fa-solid fa-rocket"></i> ابدأ التجربة</a>
-      <a class="btn ghost" href="#features" id="ctaSecondary"><i class="fa-solid fa-grid-2"></i> استكشف الميزات</a>
-    </div>
-    <div class="logos" style="margin-top:1.5rem">
-      <img alt="logo" src="https://dummyimage.com/120x32/ddd/aaa.png&text=ACME">
-      <img alt="logo" src="https://dummyimage.com/120x32/ddd/aaa.png&text=Globex">
-      <img alt="logo" src="https://dummyimage.com/120x32/ddd/aaa.png&text=Umbrella">
-      <img alt="logo" src="https://dummyimage.com/120x32/ddd/aaa.png&text=Stark">
-    </div>
-  </header>
-
-  <section id="features" class="container">
-    <div class="grid">
-      <div class="card">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h3 id="f1t">أمان متقدم</h3>
-        <p class="muted" id="f1d">تشفير JWT، صلاحيات دقيقة، ومصادقة ثنائية الاختيار (2FA) قابلة للدمج.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-chart-line"></i>
-        <h3 id="f2t">لوحات تحكم ذكية</h3>
-        <p class="muted" id="f2d">مؤشرات مباشرة، تقارير بشأن اسعار العبيد في السوق ، وتنبيهات لحظية.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-robot"></i>
-        <h3 id="f3t">أتمتة الأعمال</h3>
-        <p class="muted" id="f3d">تدفقات عمل مرنة وتكاملات مع البريد، الدردشة، والدفع.</p>
-      </div>
-      <div class="card">
-        <i class="fa-solid fa-layer-group"></i>
-        <h3 id="f4t">تكاملات جاهزة</h3>
-        <p class="muted" id="f4d">واجهات API وبوابات دفع ونُظم محاسبة بسهولة توصيل.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="solutions" class="container">
-    <div class="grid">
-      <div class="card">
-        <h3 id="s1t">حلول المؤسسات</h3>
-        <p class="muted" id="s1d">إدارة فرق، صلاحيات متقدمة، وأمان على مستوى المؤسسة.</p>
-      </div>
-      <div class="card">
-        <h3 id="s2t">للشركات الناشئة</h3>
-        <p class="muted" id="s2d">أسعار مرنة، انطلاق سريع، ونمو سلس بدون تعقيد.</p>
-      </div>
-      <div class="card">
-        <h3 id="s3t">للتجارة الإلكترونية</h3>
-        <p class="muted" id="s3d">مخزون، فواتير، وتتبع طلبات مع تحليلات سلوكية لحاله العبد اذا كان مطيع او لا .</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing" class="container pricing">
-    <h2 style="text-align:center;margin-top:0" id="prTitle">الأسعار</h2>
-    <div class="grid">
-      <div class="card plan">
-        <span class="badge" id="p1b">مبتدئ</span>
-        <div class="price" id="p1p">مجاني</div>
-        <ul class="features" id="p1l">
-          <li><i class="fa-solid fa-check"></i> 3 مشاريع</li>
-          <li><i class="fa-solid fa-check"></i> فريق حتى 3 عبيد </li>
-          <li><i class="fa-solid fa-check"></i> دعم عبر البريد</li>
-        </ul>
-        <a href="#" class="btn brand" style="margin-top:.8rem" id="p1cta">جرّب الآن</a>
-      </div>
-      <div class="card plan">
-        <span class="badge" id="p2b">احترافي</span>
-        <div class="price" id="p2p">$19 / شهر</div>
-        <ul class="features" id="p2l">
-          <li><i class="fa-solid fa-check"></i> عبيد   عدد غير محدود   </li>
-          <li><i class="fa-solid fa-check"></i> فرق حتى 10</li>
-          <li><i class="fa-solid fa-check"></i> دعم دردشة</li>
-        </ul>
-        <a href="#" class="btn brand" style="margin-top:.8rem" id="p2cta">ابدأ الخطة</a>
-      </div>
-      <div class="card plan">
-        <span class="badge" id="p3b">مؤسسات</span>
-        <div class="price" id="p3p">تواصل معنا</div>
-        <ul class="features" id="p3l">
-          <li><i class="fa-solid fa-check"></i> SSO و SAML</li>
-          <li><i class="fa-solid fa-check"></i> SLA مخصص</li>
-          <li><i class="fa-solid fa-check"></i> مدير حساب</li>
-        </ul>
-        <a href="#contact" class="btn brand" style="margin-top:.8rem" id="p3cta">اطلب عرض</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="container">
-    <div class="grid">
-      <div class="card">
-        <h3 id="ctt">تواصل معنا</h3>
-        <p class="muted" id="ctd">سعداء بالإجابة عن استفساراتك—املأ النموذج وسيتم الرد قريبًا.</p>
-        <form onsubmit="event.preventDefault(); fakeSubmit();">
-          <div class="field">
-            <label for="name" id="lblName">الاسم الكامل</label>
-            <input class="input" id="name" required placeholder="مثال: أحمد محمد"/>
-          </div>
-          <div class="field">
-            <label for="email" id="lblEmail">البريد الإلكتروني</label>
-            <input type="email" class="input" id="email" required placeholder="you@example.com"/>
-          </div>
-          <div class="field">
-            <label for="msg" id="lblMsg">رسالتك</label>
-            <textarea class="input" id="msg" rows="4" required placeholder="اكتب تفاصيل طلبك"></textarea>
-          </div>
-          <div class="row">
-            <button class="btn brand" type="submit" id="sendBtn"><i class="fa-solid fa-paper-plane"></i> إرسال</button>
-            <span class="muted" id="note">بالضغط على إرسال فأنت توافق على شروط الخدمة.</span>
-          </div>
-          <div class="alert" id="formAlert"></div>
-        </form>
-      </div>
-      <div class="card">
-        <h3 id="dashT">لقطات من لوحة التحكم</h3>
-        <p class="muted" id="dashD">نظرة سريعة على مؤشرات الأداء، المهام، والتنبيهات.</p>
-        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:.6rem">
-          <div class="card" style="padding:.8rem">
-            <span class="muted">معدل الإنجاز</span>
-            <div class="price" style="margin:.2rem 0">82%</div>
-            <div class="muted">الأسبوع الحالي</div>
-          </div>
-          <div class="card" style="padding:.8rem">
-            <span class="muted">طلبات جديدة</span>
-            <div class="price" style="margin:.2rem 0">147</div>
-            <div class="muted">اليوم</div>
-          </div>
-          <div class="card" style="padding:.8rem">
-            <span class="muted">متوسط زمن الاستجابة</span>
-            <div class="price" style="margin:.2rem 0">1.2s</div>
-            <div class="muted">الخدمات</div>
-          </div>
-          <div class="card" style="padding:.8rem">
-            <span class="muted">الأخطاء</span>
-            <div class="price" style="margin:.2rem 0">0.12%</div>
-            <div class="muted">آخر 24 ساعة</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="row">
-        <span id="copyright">© 2025 ExampleCorp. جميع الحقوق محفوظة.</span>
-      </div>
-      <div style="margin-top:.4rem; display:flex; gap:1rem; justify-content:center">
-        <a class="link" href="#" id="tos">شروط الخدمة</a>
-        <a class="link" href="#" id="privacy">الخصوصية</a>
-        <a class="link" href="#" id="security">الأمان</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- مودال تسجيل دخول -->
-  <div class="modal" id="loginModal" aria-hidden="true" role="dialog" aria-label="Login dialog">
-    <div class="modal-card">
-      <div class="row">
-        <h3 id="loginTitle" style="margin:.2rem 0">تسجيل الدخول</h3>
-        <button class="btn ghost" onclick="toggleLogin(false)"><i class="fa-solid fa-xmark"></i> إغلاق</button>
-      </div>
-      <div class="hr"></div>
-      <div id="loginAlert" class="alert"></div>
-      <form onsubmit="event.preventDefault(); fakeLogin();">
-        <div class="field">
-          <label for="user" id="lblUser">البريد الإلكتروني</label>
-          <input id="user" type="email" class="input" required placeholder="you@example.com"/>
-        </div>
-        <div class="field">
-          <label for="pass" id="lblPass">كلمة المرور</label>
-          <input id="pass" type="password" class="input" required placeholder="••••••••"/>
-        </div>
-        <div class="row">
-          <label style="display:flex; gap:.4rem; align-items:center">
-            <input type="checkbox" id="remember"/> <span id="rememberTxt">تذكرني</span>
-          </label>
-          <a href="#" class="link" id="forgotTxt">نسيت كلمة المرور؟</a>
-        </div>
-        <button class="btn brand" type="submit" style="width:100%; margin-top:.8rem" id="loginCta">
-          <i class="fa-solid fa-right-to-bracket"></i> دخول
-        </button>
-        <div class="row" style="justify-content:center; margin-top:.6rem">
-          <span class="muted" id="noAcc">ليس لديك حساب؟</span>
-          <a href="#" class="link" onclick="fakeSignup()" id="signupLink">إنشاء حساب</a>
-        </div>
-      </form>
-    </div>
+  <div class="cards">
+    <div class="card">📝 أقوى متجر لبيع العبيد في الشرق الأوسط </div>
+    <div class="card">📊 يوجد لدينا عبسد بجميع الأنواع (يوجد شرس) </div>
+    <div class="card">⚡ خدمات توصيل وترويض للعبيد بأعلى مستوى </div>
   </div>
 
-  <!-- زر أعلى الصفحة -->
-  <button class="to-top" id="toTop" title="أعلى">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
-
   <script>
-    // حالة
-    let lang = "ar";
-    const $ = (sel)=>document.querySelector(sel);
-
-    // تبديل الثيم
-    $("#themeSelect").addEventListener("change",(e)=>{
-      document.body.classList.toggle("light", e.target.value==="light");
-    });
-
-    // تبديل اللغة
-    const dict = {
-      ar:{
-        brand:"ExampleCorp",
-        login:"تسجيل الدخول", cta:"ابدأ الآن",
-        chip1:"منصة أعمال موثوقة",
-        h1:"حلول سحابية تُسرّع نمو شركتك",
-        sub:"نقدّم نظام تحليلات ولوحات تحكم وأتمتة مهام لمساعدتك على اتخاذ قرارات أسرع، مع أمان عالي وتجربة استخدام مرنة.",
-        f1t:"أمان متقدم", f1d:"تشفير JWT، صلاحيات دقيقة، ومصادقة ثنائية الاختيار (2FA) قابلة للدمج.",
-        f2t:"لوحات تحكم ذكية", f2d:"مؤشرات مباشرة، تقارير قابلة للتصدير، وتنبيهات لحظية.",
-        f3t:"أتمتة الأعمال", f3d:"تدفقات عمل مرنة وتكاملات مع البريد، الدردشة، والدفع.",
-        f4t:"تكاملات جاهزة", f4d:"واجهات API وبوابات دفع ونُظم محاسبة بسهولة توصيل.",
-        s1t:"حلول المؤسسات", s1d:"إدارة فرق، صلاحيات متقدمة، وأمان على مستوى المؤسسة.",
-        s2t:"للشركات الناشئة", s2d:"أسعار مرنة، انطلاق سريع، ونمو سلس بدون تعقيد.",
-        s3t:"للتجارة الإلكترونية", s3d:"مخزون، فواتير، وتتبع طلبات مع تحليلات سلوكية.",
-        prTitle:"الأسعار",
-        p1b:"مبتدئ", p1p:"مجاني", p1cta:"جرّب الآن",
-        p2b:"احترافي", p2p:"$19 / شهر", p2cta:"ابدأ الخطة",
-        p3b:"مؤسسات", p3p:"تواصل معنا", p3cta:"اطلب عرض",
-        ctt:"تواصل معنا", ctd:"سعداء بالإجابة عن استفساراتك—املأ النموذج وسيتم الرد قريبًا.",
-        lblName:"الاسم الكامل", lblEmail:"البريد الإلكتروني", lblMsg:"رسالتك", sendBtn:"إرسال",
-        note:"بالضغط على إرسال فأنت توافق على شروط الخدمة.",
-        dashT:"لقطات من لوحة التحكم", dashD:"نظرة سريعة على مؤشرات الأداء، المهام، والتنبيهات.",
-        copyright:"© 2025 ExampleCorp. جميع الحقوق محفوظة.",
-        tos:"شروط الخدمة", privacy:"الخصوصية", security:"الأمان",
-        loginTitle:"تسجيل الدخول", lblUser:"البريد الإلكتروني", lblPass:"كلمة المرور",
-        rememberTxt:"تذكرني", forgotTxt:"نسيت كلمة المرور؟", loginCta:"دخول",
-        noAcc:"ليس لديك حساب؟", signupLink:"إنشاء حساب"
-      },
-      en:{
-        brand:"ExampleCorp",
-        login:"Log in", cta:"Get started",
-        chip1:"Trusted business platform",
-        h1:"Cloud solutions to accelerate your growth",
-        sub:"Analytics, dashboards, and workflow automation to help you decide faster—with strong security and a flexible UX.",
-        f1t:"Advanced Security", f1d:"JWT encryption, granular roles, optional 2FA integration.",
-        f2t:"Smart Dashboards", f2d:"Live KPIs, exportable reports, and instant alerts.",
-        f3t:"Business Automation", f3d:"Flexible workflows with email, chat, and payments.",
-        f4t:"Ready Integrations", f4d:"APIs, payment gateways, and accounting systems.",
-        s1t:"Enterprise", s1d:"Teams, granular permissions, and enterprise-grade security.",
-        s2t:"Startups", s2d:"Flexible pricing, fast onboarding, and smooth growth.",
-        s3t:"E-Commerce", s3d:"Inventory, invoicing, and order tracking with behavior analytics.",
-        prTitle:"Pricing",
-        p1b:"Starter", p1p:"Free", p1cta:"Try now",
-        p2b:"Pro", p2p:"$19 / mo", p2cta:"Choose plan",
-        p3b:"Enterprise", p3p:"Contact us", p3cta:"Request quote",
-        ctt:"Contact us", ctd:"We’re happy to help—fill the form and we’ll reply soon.",
-        lblName:"Full name", lblEmail:"Email address", lblMsg:"Your message", sendBtn:"Send",
-        note:"By sending, you agree to the Terms of Service.",
-        dashT:"Dashboard snapshots", dashD:"A quick peek at KPIs, tasks, and alerts.",
-        copyright:"© 2025 ExampleCorp. All rights reserved.",
-        tos:"Terms", privacy:"Privacy", security:"Security",
-        loginTitle:"Log in", lblUser:"Email", lblPass:"Password",
-        rememberTxt:"Remember me", forgotTxt:"Forgot password?", loginCta:"Sign in",
-        noAcc:"No account?", signupLink:"Sign up"
-      }
-    };
-
-    function applyLang(){
-      const t = dict[lang];
-      document.documentElement.lang = lang;
-      document.documentElement.dir = (lang==="ar")?"rtl":"ltr";
-      $("#brand span").textContent = t.brand;
-      $("#loginText").textContent = t.login;
-      $("#ctaText").textContent = t.cta;
-      $("#chip1").textContent = t.chip1;
-      $("#h1").textContent = t.h1;
-      $("#sub").textContent = t.sub;
-      ["f1t","f1d","f2t","f2d","f3t","f3d","f4t","f4d","s1t","s1d","s2t","s2d","s3t","s3d",
-       "prTitle","p1b","p1p","p1cta","p2b","p2p","p2cta","p3b","p3p","p3cta",
-       "ctt","ctd","lblName","lblEmail","lblMsg","sendBtn","note","dashT","dashD",
-       "copyright","tos","privacy","security",
-       "loginTitle","lblUser","lblPass","rememberTxt","forgotTxt","loginCta","noAcc","signupLink"
-      ].forEach(id=>{
-        const el=$("#"+id); if(el && t[id]) el.textContent = t[id];
-      });
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
     }
 
-    $("#langSelect").addEventListener("change",(e)=>{ lang=e.target.value; applyLang(); });
-
-    // مودال الدخول
-    function toggleLogin(show=true){
-      const m = $("#loginModal");
-      if(show){ m.classList.add("show"); m.setAttribute("aria-hidden","false"); }
-      else { m.classList.remove("show"); m.setAttribute("aria-hidden","true"); }
-    }
-    $("#loginBtn").addEventListener("click", ()=>toggleLogin(true));
-    $("#loginModal").addEventListener("click", (e)=>{ if(e.target.id==="loginModal") toggleLogin(false); });
-
-    // إرسال نموذج اتصال (وهمي للعرض فقط)
-    function fakeSubmit(){
-      const alert = $("#formAlert");
-      alert.style.display="block";
-      alert.textContent = (lang==="ar")
-        ? "تم استلام رسالتك بنجاح! سنعاود التواصل قريبًا."
-        : "Your message has been received! We’ll get back to you shortly.";
-      setTimeout(()=>{ alert.style.display="none"; }, 4000);
-    }
-
-    // تسجيل دخول (وهمي) — اربطه بباك-إند لاحقًا
-    function fakeLogin(){
-      const email = $("#user").value.trim();
-      const pass = $("#pass").value.trim();
-      const alert = $("#loginAlert");
-      if(!email || !pass){
-        alert.style.display="block";
-        alert.textContent = (lang==="ar") ? "أدخل البريد وكلمة المرور." : "Enter email and password.";
-        return;
-      }
-      // مكان توصيل API: /api/auth/login
-      alert.style.display="block";
-      alert.style.background = "rgba(34,197,94,.15)";
-      alert.style.borderColor = "#22c55e";
-      alert.textContent = (lang==="ar") ? "تم تسجيل الدخول بنجاح (تجريبي)." : "Signed in successfully (demo).";
-      setTimeout(()=>toggleLogin(false), 1200);
-    }
-    function fakeSignup(){
-      alert((lang==="ar") ? "ميزة التسجيل ستُربط لاحقًا بواجهة API." : "Signup will be wired to an API later.");
-    }
-
-    // زر أعلى الصفحة
-    const toTop = $("#toTop");
-    window.addEventListener("scroll", ()=>{
-      if(window.scrollY > 400) toTop.classList.add("show");
-      else toTop.classList.remove("show");
-    });
-    toTop.addEventListener("click", ()=>window.scrollTo({top:0, behavior:"smooth"}));
-
-    // تهيئة
-    applyLang();
+    // مثال: تغيير الخلفية برابط صورة
+    // حط هنا رابط الصورة اللي عايزها
+    document.body.style.backgroundImage = "https://cdn.discordapp.com/attachments/1406963864192684084/1409672209869312090/photo.jpg?ex=68ae3b0d&is=68ace98d&hm=9edde98d284d115b2d78302c63385db954724ea0ebe89d7b6bb334eb092d532e&";
   </script>
 </body>
 </html>
